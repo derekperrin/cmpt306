@@ -25,14 +25,14 @@ public class hero : MonoBehaviour {
     private void Movement(float horizontal, float vertical)
     {
         Vector2 movement = new Vector2(horizontal, vertical);
-        heroRigidBody.AddForce(movement * speed);
-        if (heroRigidBody.velocity.magnitude > 8)
+        //heroRigidBody.AddForce(movement * speed);
+        /*if (heroRigidBody.velocity.magnitude > 8)
         {
             speed = 1;
-        }
-        /*
+        }*/
+        
         heroRigidBody.velocity = new Vector2(horizontal * speed, heroRigidBody.velocity.y);
-        heroRigidBody.velocity = new Vector2(vertical * speed, heroRigidBody.velocity.x); */
+        heroRigidBody.velocity = new Vector2(heroRigidBody.velocity.x, vertical * speed);
         //myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
     }
