@@ -207,10 +207,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 0.2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -424,8 +424,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletAsset: {fileID: 758356290}
-  fireSpeed: 1
-  weaponCooldown: 1
-  bulletSpeed: 5
+  fireSpeed: 0.5
+  weaponCooldown: 3
+  bulletSpeed: 3
   xOffset: 0
   YOffset: 0
