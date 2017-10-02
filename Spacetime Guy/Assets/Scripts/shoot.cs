@@ -31,11 +31,11 @@ public class shoot : MonoBehaviour {
         if (Time.time >= weaponCooldown){
             if (Input.GetButton("FireX"))  {
                 float shootDirX = Input.GetAxisRaw("FireX");
-                Vector2 xMoveVec = new Vector2((shootDirX) * bulletSpeed, 0);
+                Vector2 xMoveVec = new Vector2((shootDirX*50) * bulletSpeed, 0);
                 Fire(xMoveVec);
             } else if (Input.GetButton("FireY")){
                float shootDirY = Input.GetAxisRaw("FireY");
-                Vector2 yMoveVec = new Vector2(0,(shootDirY) * bulletSpeed);
+                Vector2 yMoveVec = new Vector2(0,(shootDirY*50) * bulletSpeed);
                 Fire(yMoveVec);
             }
         }
