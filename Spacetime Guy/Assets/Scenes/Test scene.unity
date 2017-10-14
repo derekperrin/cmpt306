@@ -315,8 +315,8 @@ GameObject:
   - component: {fileID: 1464460303}
   - component: {fileID: 1464460302}
   - component: {fileID: 1464460301}
-  - component: {fileID: 1464460300}
   - component: {fileID: 1464460304}
+  - component: {fileID: 1464460305}
   m_Layer: 0
   m_Name: Hero Test
   m_TagString: Untagged
@@ -324,18 +324,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1464460300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1464460299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f5127ff919c1a45aae880c1ac62df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
 --- !u!50 &1464460301
 Rigidbody2D:
   serializedVersion: 4
@@ -429,3 +417,15 @@ MonoBehaviour:
   bulletSpeed: 3
   xOffset: 0
   YOffset: 0
+--- !u!114 &1464460305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464460299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6c3cef2a9521642a87a308f72df1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
