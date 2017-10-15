@@ -23,7 +23,13 @@ public abstract class character : MonoBehaviour
      * 
      * Move the character.
      */
-    protected abstract void Movement(float horizontal, float vertical);
+    protected void Movement(float horizontal, float vertical)
+    {
+        Vector2 movement = new Vector2(horizontal, vertical);
+
+        heroRigidBody.velocity = new Vector2(horizontal * speed, heroRigidBody.velocity.y);
+        heroRigidBody.velocity = new Vector2(heroRigidBody.velocity.x, vertical * speed);
+    }
 
     /***
      * Move the character
