@@ -9,6 +9,13 @@ public abstract class character : MonoBehaviour
     [SerializeField]
     protected float speed;
 
+    //Health values for the player + characters
+    protected float health;
+    //Boolean to make players undamagable/unkillable 
+    protected bool immortal;
+    //number for amount of 'lives'character has. starts with one (usually), but can add more through items etc.
+    protected int lives;
+
     protected abstract void Start();
 
     /***
@@ -31,6 +38,26 @@ public abstract class character : MonoBehaviour
         heroRigidBody.velocity = new Vector2(heroRigidBody.velocity.x, vertical * speed);
     }
 
+    protected void TakeDamage(float damage)
+    {
+        if (immortal){
+            damage = 0;
+        }
+        health = health - damage;
+        if (health <= 0)
+        {
+            //Handle some stuff with lives
+            lives = lives - 1;
+            if (lives <= 0)
+            {
+                //  Die();
+            }
+        }
+    }
+
+    protected abstract void Die();
+        
+       
     /***
      * Move the character
      */

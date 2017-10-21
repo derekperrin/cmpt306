@@ -45,9 +45,14 @@ public class shoot : MonoBehaviour {
     void Fire(Vector2 direction) {
         
   Rigidbody2D bPrefab = Instantiate(bulletAsset, new Vector3(transform.position.x + xOffset, transform.position.y + YOffset, transform.position.z), Quaternion.identity) as Rigidbody2D;
-        //bPrefab.rigidbody2D.AddForce(Vector2.up * bulletSpeed); 
+        //get parent's momentium when firing.
+        Vector2 playerVelocity = (this.GetComponent<Rigidbody2D>().velocity);
+        int velocityMultiplier = 10;
+
+
+        direction = new Vector2(direction.x == 0 ? playerVelocity.x * velocityMultiplier : direction.x, direction.y == 0 ? playerVelocity.y * velocityMultiplier : direction.y);
+
         bPrefab.GetComponent<Rigidbody2D>().AddForce(direction);
-            //.addForce(Vector2.up * bulletSpeed);
         weaponCooldown = Time.time + fireSpeed;
 	}
 }
