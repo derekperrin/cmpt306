@@ -306,7 +306,7 @@ MonoBehaviour:
     type: 2}
   fireSpeed: 0.5
   weaponCooldown: 3
-  bulletSpeed: 30
+  bulletSpeed: 60
   xOffset: 0
   YOffset: 0
 --- !u!114 &1464460305
