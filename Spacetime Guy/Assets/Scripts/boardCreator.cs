@@ -16,11 +16,13 @@ public class boardCreator : MonoBehaviour {
     private TileType[][] board;
     private Room[] rooms;
     private GameObject boardHolder;
+    public List<Leafs> childLeafs;
 
     // Use this for initialization
     void Start() {
         Leafs root = new Leafs(0,0,levelWidth,levelHeight);
         leafs = new List<Leafs>();
+        childLeafs = new List<Leafs>();
         leafs.Add(root);
         bool hasSplit = true;
 
@@ -35,9 +37,15 @@ public class boardCreator : MonoBehaviour {
                         leafs.Add(leafs[i].leftChild);
                         leafs.Add(leafs[i].rightChild);
                         hasSplit = true;
+                    } else {
+                        childLeafs.Add(leafs[i]);
                     }
                 }
             }
+        }
+        foreach (Leafs i in childLeafs)
+        {
+            i.room = new Room();
         }
 
         /*
