@@ -1,11 +1,12 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class boardCreator : MonoBehaviour {
 
 
-
+    public int maxLeaf = 20;
+    public List<Leafs> leafs;
     public int levelHeight = 100;
     public int levelWidth = 100;
     //public GameObject[] floor;
@@ -18,6 +19,28 @@ public class boardCreator : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        Leafs root = new Leafs(0,0,levelWidth,levelHeight);
+        leafs = new List<Leafs>();
+        leafs.Add(root);
+        bool hasSplit = true;
+
+        while (hasSplit)
+        {
+            hasSplit = false;
+            for(int i=0; i < leafs.Count; i++){
+                if(leafs[i].leftChild == null && leafs[i].rightChild == null)
+                {
+                    if (leafs[i].split())
+                    {
+                        leafs.Add(leafs[i].leftChild);
+                        leafs.Add(leafs[i].rightChild);
+                        hasSplit = true;
+                    }
+                }
+            }
+        }
+
+        /*
         boardHolder = new GameObject("BoardHolder");
 
         SetupTilesArray();
@@ -28,6 +51,7 @@ public class boardCreator : MonoBehaviour {
 
         InstantiateTiles();
         InstantiateOuterWalls();
+        */
 
     }
 
@@ -95,4 +119,4 @@ public class boardCreator : MonoBehaviour {
             }
         }
     }
-}*/
+}
