@@ -6,47 +6,184 @@ using UnityEngine;
 
 public class Hallways {
     //bottom left corner point
-    int xCorner;
-    int yCorner;
-    int hallwayLength = 1;
-    int hallwayWidth = 1;
+    public int xCornerStarting;
+    public int yCornerStarting;
+    //ending room corner point
+    public int xCornerEnding;
+    public int yCornerEnding;
+
+    public int hallwayHorizontalLength = 0;
+    public int hallwayVerticalLength = 0;
+
+
+    public int hallwayWidth = 1;
    
     //Two rooms we're connecting
-    Room startingRoom;
-    Room endingRoom;
+    public Room startingRoom;
+    public Room endingRoom;
 
     //the point we need to bend to create an L-shape 
-    int xBendCorner = null;
-    int yBendCorner = null;
+    public int xBendCorner=0;
+    public int yBendCorner=0;
 
     //tells if we need to bend the hallway.
     bool lShape = false;
 
-    //Which side do we make the hallway on?
-    bool r1FurtherThanR2 = false;
+    
+    bool hallwayIntersect = false;
     //boolean top = false;
     //boolean left = false;
     //how much they overlap within the distance between each other.
     int xOverlap;
     int yOverlap;
 
-    Hallways(Room startingRoom, Room endingRoom)
+    public Hallways(Room startingRoom, Room endingRoom)
     {
-        xOverlap = calculateOverlap(startingRoom.xPos, endingRoom.xPos, startingRoom.xPos + startingRoom.roomWidth, endingRoom.xPos + endingRoom.roomWidth);
-       // if (r1FurtherThanR2)
-       // {
+        if (Mathf.Abs(startingRoom.xPos - endingRoom.xPos) > Mathf.Abs(startingRoom.yPos - endingRoom.yPos))
+        {
+            if (startingRoom.xPos - endingRoom.xPos > 0)
+            {
+                //Hallway is going to the left
+                xCornerStarting = startingRoom.xPos;
+                yCornerStarting = startingRoom.yPos + startingRoom.roomHeight / 2;
+                //xCornerEnding = endingRoom.xPos;
+                hallwayHorizontalLength = (endingRoom.xPos + endingRoom.roomWidth) - startingRoom.xPos;
+                xCornerEnding = startingRoom.xPos + hallwayHorizontalLength;
+                yCornerEnding = yCornerStarting;
+                //check if room and hallway overlap
+                if (!CheckIfHallwayOverlap(endingRoom, xCornerEnding, yCornerEnding))
+                {
+                    lShape = true;
+                    xBendCorner = xCornerEnding - 1;
+                    yBendCorner = yCornerEnding;
+                    hallwayHorizontalLength--;
 
-       // }
-        yOverlap = calculateOverlap(startingRoom.yPos, endingRoom.yPos, startingRoom.yPos + startingRoom.roomHeight, endingRoom.yPos + endingRoom.roomHeight);
-       // if (r1FurtherThanR2)
-       // {
+                    if (lShape == true)
+                    {
+                        int bendDir = WhichWayToBend(endingRoom, xBendCorner, yBendCorner);
+                        xCornerEnding = xBendCorner;
+                        yCornerEnding = yBendCorner + (bendDir * Mathf.Abs(endingRoom.yPos - yBendCorner));
+                        hallwayVerticalLength = endingRoom.yPos - yBendCorner;
+                    }
+                }
+            }
+            else
+            {
 
-       // }
-        
 
+                xCornerStarting = startingRoom.xPos + startingRoom.roomWidth;
+                yCornerStarting = startingRoom.yPos + startingRoom.roomHeight / 2;
+                //Hallway is going to the right
+                hallwayHorizontalLength = endingRoom.xPos - startingRoom.xPos + startingRoom.roomWidth;
+                xCornerEnding = startingRoom.xPos + hallwayHorizontalLength;
+                yCornerEnding = yCornerStarting;
+                //check if room and hallway overlap
+                if (!CheckIfHallwayOverlap(endingRoom, xCornerEnding, yCornerEnding))
+                {
+                    lShape = true;
+                    xBendCorner = xCornerEnding + 1;
+                    yBendCorner = yCornerEnding;
+                    hallwayHorizontalLength++;
+
+                    if (lShape == true)
+                    {
+                        int bendDir = WhichWayToBend(endingRoom, xBendCorner, yBendCorner);
+                        xCornerEnding = xBendCorner;
+                        yCornerEnding = yBendCorner + (bendDir * Mathf.Abs(endingRoom.yPos - yBendCorner));
+                        hallwayVerticalLength = endingRoom.yPos - yBendCorner;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (startingRoom.yPos - endingRoom.yPos > 0)
+            {
+                //Hallway going down
+                yCornerStarting = startingRoom.yPos;
+                xCornerStarting = startingRoom.xPos + startingRoom.roomWidth / 2;
+                //xCornerEnding = endingRoom.xPos;
+                hallwayVerticalLength = (endingRoom.yPos + endingRoom.roomHeight)-startingRoom.yPos;
+                yCornerEnding = startingRoom.yPos + hallwayVerticalLength;
+                xCornerEnding = xCornerStarting;
+                //check if room and hallway overlap
+                if (!CheckIfHallwayOverlap(endingRoom, xCornerEnding, yCornerEnding))
+                {
+                    lShape = true;
+                    yBendCorner = yCornerEnding - 1;
+                    xBendCorner = xCornerEnding;
+                    hallwayVerticalLength--;
+
+                    if (lShape == true)
+                    {
+                        int bendDir = WhichWayToBend(endingRoom, xBendCorner, yBendCorner);
+                        yCornerEnding = yBendCorner;
+                        xCornerEnding = xBendCorner + (bendDir * Mathf.Abs(endingRoom.xPos - xBendCorner));
+                        hallwayHorizontalLength = endingRoom.xPos - xBendCorner;
+                    }
+                }
+                else
+                {
+                    //Hallway going up
+                    yCornerStarting = startingRoom.yPos + startingRoom.roomHeight;
+                    xCornerStarting = startingRoom.xPos + startingRoom.roomWidth / 2;
+                    //xCornerEnding = endingRoom.xPos;
+                    hallwayVerticalLength = endingRoom.yPos - (startingRoom.yPos + startingRoom.roomHeight);
+                    yCornerEnding = startingRoom.yPos + hallwayVerticalLength;
+                    xCornerEnding = xCornerStarting;
+                    //check if room and hallway overlap
+                    if (!CheckIfHallwayOverlap(endingRoom, xCornerEnding, yCornerEnding))
+                    {
+                        lShape = true;
+                        yBendCorner = yCornerEnding + 1;
+                        xBendCorner = xCornerEnding;
+                        hallwayVerticalLength++;
+
+                        if (lShape == true)
+                        {
+                            int bendDir = WhichWayToBend(endingRoom, xBendCorner, yBendCorner);
+                            yCornerEnding = yBendCorner;
+                            xCornerEnding = xBendCorner + (bendDir * Mathf.Abs(endingRoom.xPos - xBendCorner));
+                            hallwayHorizontalLength = endingRoom.xPos - xBendCorner;
+                        }
+                    }
+                }
+            }
+        }
+	}
+
+    public bool CheckIfHallwayOverlap(Room endRoom, int xHallwayEnd,int yHallwayEnd)
+    {
+        if ((xHallwayEnd >= endRoom.xPos && xHallwayEnd <= endRoom.xPos + endRoom.roomWidth) &&
+            (yHallwayEnd >= endRoom.yPos && yHallwayEnd <= endRoom.yPos + endRoom.roomHeight) )
+        {
+            return true;    
+        }
+            return false;
     }
 
-    public int calulateOverlap(int R1LeftCorner, int R2LeftCorner, int R1RightCorner, int R2RightCorner)
+    public int WhichWayToBend(Room endRoom, int xBend,int yBend)
+    {
+        if (endRoom.xPos > xBend)
+        {
+            return 1;
+        }
+        if (endRoom.xPos < xBend)
+        {
+            return -1;
+        }
+        if (endRoom.yPos > yBend)
+        {
+            return 1;
+        }
+        if (endRoom.yPos > yBend)
+        {
+            return -1;
+        }
+        return 0;
+    }
+
+   /*  public int calulateOverlap(int R1LeftCorner, int R2LeftCorner, int R1RightCorner, int R2RightCorner)
     {
         int Overlap;
         if (R1LeftCorner > R2RightCorner)
@@ -59,8 +196,8 @@ public class Hallways {
             Overlap = R2LeftCorner - R1RightCorner;
             r1FurtherThanR2 = false;
         }
-        return Overlap;
+         return Overlap;
         
-    }
+    }*/
 
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 
 
 public class Room {
-    private int xPos; //x coordinate of lower left corner
-    private int yPos; //y coordinate of lower left corner
+    public int xPos; //x coordinate of lower left corner
+    public int yPos; //y coordinate of lower left corner
     //Height and Width of Room 
     public int roomHeight;
     public int roomWidth;
@@ -23,11 +23,25 @@ public class Room {
     public int divisionFactor = 4;
     public Rect roomRect;
 
-    Room(int leafHeight,int leafWidth,int leafXPos,int leafYPos)
+    public Room(int leafHeight,int leafWidth,int leafXPos,int leafYPos)
     {
         System.Random randInt = new System.Random();
-        xPos = randInt.Next(leafXPos,leafWidth/divisionFactor);
-        yPos = randInt.Next(leafYPos, leafHeight/divisionFactor);
+        if(leafXPos > leafWidth / divisionFactor)
+        {
+            xPos = randInt.Next(leafWidth / divisionFactor, leafXPos);
+        }
+        else
+        {
+            xPos = randInt.Next(leafXPos, leafWidth / divisionFactor);
+        }
+        if (leafYPos > leafHeight/divisionFactor)
+        {
+            yPos = randInt.Next(leafHeight / divisionFactor, leafYPos);
+        }
+        else
+        {
+            yPos = randInt.Next(leafYPos, leafHeight / divisionFactor);
+        }
         roomHeight = randInt.Next(minRoomHeight, leafHeight - (leafHeight/divisionFactor) );
         roomWidth = randInt.Next(minRoomWidth, leafWidth - (leafWidth/divisionFactor) );
         //roomRect = new Rect();
