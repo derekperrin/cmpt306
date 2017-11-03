@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Leafs{
-    public int leafSize = 6;
+
+    public int leafSize = 15;
     public int xpos;
     public int ypos;
     public int width;

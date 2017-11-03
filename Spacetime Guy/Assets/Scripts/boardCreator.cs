@@ -16,9 +16,15 @@ public class boardCreator : MonoBehaviour
     //public GameObject[] outerwall;
     //public GameObject player;
     private int[,] board;
+    //array of objects
+    private GameObject[,] playfield;
+    public GameObject wall;
     private Room[] rooms;
     private GameObject boardHolder;
     public List<Leafs> childLeafs;
+    //the starting corner for instantiating game objects
+    public float yBoardCorner = -20.0f;
+    public float xBoardCorner = -40.0f;
 
     // Use this for initialization
     void Start()
@@ -42,18 +48,17 @@ public class boardCreator : MonoBehaviour
                         leafs.Add(leafs[i].rightChild);
                         hasSplit = true;
                     }
-                    else
-                    {
-                        childLeafs.Add(leafs[i]);
-                    }
                 }
             }
         }
+        this.createrooms(root);
+        
         foreach (Leafs i in childLeafs)
         {
             i.room = new Room(i.height, i.width, i.xpos, i.ypos);
         }
         hallwayList = new List<Hallways>();
+        
         foreach (Leafs i in childLeafs)
         {
             int temp1 = Random.Range(0, childLeafs.Count);
@@ -65,6 +70,14 @@ public class boardCreator : MonoBehaviour
             Hallways h1 = new Hallways(childLeafs[temp1].room, childLeafs[temp2].room);
             hallwayList.Add(h1);
         }
+        foreach (Leafs i in childLeafs)
+        {
+            printroom(i.room);
+        }
+        foreach (Leafs i in childLeafs)
+        {
+            printleaf(i);
+        }
         board = new int[levelHeight, levelWidth];
         for (int i = 0; i < levelWidth; i++)
         {
@@ -73,11 +86,12 @@ public class boardCreator : MonoBehaviour
                 board[i, j] = 1;
             }
         }
+
         foreach (Leafs i in childLeafs)
         {
-            for (int j = i.room.leafXPos; j < i.room.leafXPos + i.room.leafWidth; j++)
+            for (int j = i.room.xPos; j < i.room.xPos + i.room.roomWidth; j++)
             {
-                for (int k = i.room.leafYPos; k < i.room.leafYPos + i.room.leafHeight; k++)
+                for (int k = i.room.yPos; k < i.room.yPos + i.room.roomHeight; k++)
                 {
                     board[j, k] = 0;
                 }
@@ -113,7 +127,23 @@ public class boardCreator : MonoBehaviour
                     board[i.xCornerStarting, j] = 0;
                 }
             }
+            for (int j = 0; j < levelWidth; j++)
+            {
+                for (int k = 0; k < levelHeight; k++)
+                {
+                    if (board[j, k] == 1)
+                    {
+                        Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                        Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                        Instantiate(wall, position, rotation);
+                    }
+                }
+            }
+
         }
+        //this.printArray(board);
+
+
 
         /*
         boardHolder = new GameObject("BoardHolder");
@@ -126,20 +156,70 @@ public class boardCreator : MonoBehaviour
 
         InstantiateTiles();
         InstantiateOuterWalls();
-        */
+        
         for (int i = 0; i < levelHeight; i++)
         {
 
             for (int j = 0; j < levelWidth; j++)
             {
-                print(board[i, j]);
+                Debug.Log(board[i, j]);
             }
             print(System.Environment.NewLine);
-        }
+        }*/
     }
-  
+    void createrooms(Leafs l)
+    {
+        if(l.leftChild != null || l.rightChild != null)
+        {
+            if(l.leftChild != null)
+            {
+                this.createrooms(l.leftChild);
+            }
+            if(l.rightChild != null)
+            {
+                this.createrooms(l.rightChild);
+            }
+        }
+        else
+        {
+            this.childLeafs.Add(l);
+        }
+    } 
+
+    void printroom(Room r)
+    {
+        print("The x coordinate is " +  r.xPos);
+        print("The Y coordinate is " + r.yPos);
+
+        print("The width is " + r.roomWidth);
+        print("The height is " + r.roomHeight);
+    }
+    void printleaf(Leafs l)
+    {
+        print("The x coordinate is " + l.xpos);
+        print("The Y coordinate is " + l.ypos);
+
+        print("The width is " + l.width);
+        print("The height is " + l.height);
+    }
+    void printArray(int[,] board)
+    {
+        string newString = "";
+        for(int i=0; i < levelHeight; i++)
+        {
+            for(int j=0; j < levelWidth; j++)
+            {
+                newString += board[i, j];
+            }
+            newString += System.Environment.NewLine;
+        }
+        print(newString);
+    }
 
 }
+
+
+
 
    
 
