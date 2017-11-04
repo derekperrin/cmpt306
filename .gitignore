@@ -22,7 +22,6 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
-*.meta
 *.ide
 
 # Unity3D Generated File On Crash Reports
