@@ -9,8 +9,8 @@ public class boardCreator : MonoBehaviour
     public int maxLeaf = 20;
     public List<Leafs> leafs;
     public List<Hallways> hallwayList;
-    public int levelHeight = 100;
-    public int levelWidth = 100;
+    public int levelHeight = 30;
+    public int levelWidth = 30;
     //public GameObject[] floor;
     //public GameObject[] wall;
     //public GameObject[] outerwall;
@@ -74,6 +74,7 @@ public class boardCreator : MonoBehaviour
         {
             printroom(i.room);
         }
+        print("END OF PRINT ROOMSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
         foreach (Leafs i in childLeafs)
         {
             printleaf(i);
@@ -145,27 +146,7 @@ public class boardCreator : MonoBehaviour
 
 
 
-        /*
-        boardHolder = new GameObject("BoardHolder");
-
-        SetupTilesArray();
-
-        CreateRooms();
-
-        SetTileValuesForRooms();
-
-        InstantiateTiles();
-        InstantiateOuterWalls();
-        
-        for (int i = 0; i < levelHeight; i++)
-        {
-
-            for (int j = 0; j < levelWidth; j++)
-            {
-                Debug.Log(board[i, j]);
-            }
-            print(System.Environment.NewLine);
-        }*/
+       
     }
     void createrooms(Leafs l)
     {

@@ -26,24 +26,35 @@ public class Room {
     public Room(int leafHeight,int leafWidth,int leafXPos,int leafYPos)
     {
         System.Random randInt = new System.Random();
-        if(leafXPos > leafWidth / divisionFactor)
+        /*
+        xPos = randInt.Next(leafXPos, leafXPos + leafWidth/4);
+        yPos = randInt.Next(leafYPos, leafYPos + leafHeight / 4);
+        */
+        xPos = leafXPos + 1;
+        yPos = leafYPos + 1;
+        roomHeight = leafHeight - 2;
+        roomWidth = leafWidth - 2;
+        
+        /*
+        if(minRoomHeight > leafHeight - (yPos - leafYPos))
         {
-            xPos = randInt.Next(leafWidth / divisionFactor, leafXPos);
+            roomHeight = randInt.Next(leafHeight - (yPos - leafYPos), minRoomHeight);
         }
         else
         {
-            xPos = randInt.Next(leafXPos, leafWidth / divisionFactor);
+            roomHeight = randInt.Next(minRoomHeight, leafHeight - (yPos - leafYPos));
         }
-        if (leafYPos > leafHeight/divisionFactor)
+        if (minRoomWidth > leafWidth - (xPos - leafXPos))
         {
-            yPos = randInt.Next(leafHeight / divisionFactor, leafYPos);
+            roomWidth = randInt.Next(leafWidth - (xPos - leafXPos), minRoomWidth);
         }
         else
         {
-            yPos = randInt.Next(leafYPos, leafHeight / divisionFactor);
-        }
-        roomHeight = randInt.Next(minRoomHeight, leafHeight - (leafHeight/divisionFactor) );
-        roomWidth = randInt.Next(minRoomWidth, leafWidth - (leafWidth/divisionFactor) );
+            roomWidth = randInt.Next(minRoomWidth, leafWidth - (xPos - leafXPos));
+        }*/
+        /*
+        roomHeight = randInt.Next(minRoomHeight, leafHeight-(leafHeight - yPos));
+        roomWidth = randInt.Next(minRoomWidth, leafWidth-(leafWidth - xPos));*/
         //roomRect = new Rect();
         
 
