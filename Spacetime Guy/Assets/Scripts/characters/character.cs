@@ -7,17 +7,19 @@ public abstract class character : MonoBehaviour
     // Character variables
     protected Rigidbody2D characterRigidBody;
     [SerializeField]
-    protected float speed;
-    protected float health;
-    protected bool immortal;
-    protected int lives;
+    protected float characterSpeed;
+    [SerializeField]
+    protected float healthCurrent;
+    [SerializeField]
+    protected float healthMax; // set to 0 to be immortal
+    [SerializeField]
+    protected int lives; 
 
-    // Bullet Variables'
+    // Bullet Variables
     [SerializeField]
     private Rigidbody2D bulletAsset; // To be set in Unity
     [SerializeField]
     protected float shootRate; // To be set in Unity
-    [SerializeField]
     protected float shootCooldown; // To be set in Unity
     [SerializeField]
     protected float bulletSpeed;
@@ -40,17 +42,17 @@ public abstract class character : MonoBehaviour
 
     protected void TakeDamage(float damage)
     {
-        if (immortal){
-            damage = 0;
-        }
-        health = health - damage;
-        if (health <= 0)
+        if (healthMax == 0) // if immortal
+            return;
+        healthCurrent = healthCurrent - damage;
+        if (healthCurrent <= 0)
         {
             //Handle some stuff with lives
-            lives = lives - 1;
             if (lives <= 0)
-            {
-                //  Die();
+                Die();
+            else {
+                lives = lives - 1;
+                healthCurrent = healthMax;
             }
         }
     }

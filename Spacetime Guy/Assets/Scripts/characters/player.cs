@@ -7,9 +7,6 @@ public class player : character {
     protected override void Start()
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
-        health = 3f;
-        immortal = false;
-        lives = 1;
     }
 
     protected override void Movement()
@@ -17,8 +14,8 @@ public class player : character {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        characterRigidBody.velocity = new Vector2(horizontal * speed, characterRigidBody.velocity.y);
-        characterRigidBody.velocity = new Vector2(characterRigidBody.velocity.x, vertical * speed);
+        characterRigidBody.velocity = new Vector2(horizontal * characterSpeed, characterRigidBody.velocity.y);
+        characterRigidBody.velocity = new Vector2(characterRigidBody.velocity.x, vertical * characterSpeed);
     }
 
     protected override void Die()

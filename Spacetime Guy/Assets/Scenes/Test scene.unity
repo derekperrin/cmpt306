@@ -301,11 +301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daaf4b504c5cb904bbeed2e5121f1c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  characterSpeed: 5
+  healthCurrent: 100
+  healthMax: 100
+  lives: 1
   bulletAsset: {fileID: 50208790502512722, guid: 93f343865d2f9d94e98a9f7b01c93169,
     type: 2}
   shootRate: 0.5
-  shootCooldown: 0
   bulletSpeed: 60
   bulletXOffset: 0
   bulletYOffset: 0
@@ -413,11 +415,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b2cf03fc5bef64895f81323abb9873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  characterSpeed: 3
+  healthCurrent: 50
+  healthMax: 50
+  lives: 1
   bulletAsset: {fileID: 0}
   shootRate: 0
-  shootCooldown: 0
   bulletSpeed: 0
   bulletXOffset: 0
   bulletYOffset: 0
-  playerName: Hero
+  playerToKillName: Hero
