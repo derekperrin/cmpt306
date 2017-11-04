@@ -5,12 +5,7 @@ using UnityEngine;
 public class monster : character {
 
     public string playerName;
-    private GameObject playerToKill;
-
-    private int directionX;
-    private int directionY;
-
-    
+    private GameObject playerToKill;    
 
     protected override void Start() {
         playerToKill = GameObject.Find(playerName);
@@ -18,7 +13,6 @@ public class monster : character {
         health = 1f;
         lives = 1;
         immortal = false;
-        directionX = directionY = 1;
 	}
 
     protected override void Movement()
@@ -32,5 +26,10 @@ public class monster : character {
     protected override void Die()
     {
         Destroy(this.gameObject);
+    }
+
+    protected override void FireController()
+    {
+        // This monster does not shoot.
     }
 }

@@ -207,7 +207,6 @@ GameObject:
   - component: {fileID: 1464460303}
   - component: {fileID: 1464460302}
   - component: {fileID: 1464460301}
-  - component: {fileID: 1464460304}
   - component: {fileID: 1464460305}
   m_Layer: 0
   m_Name: Hero
@@ -291,24 +290,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1464460304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1464460299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e570ab1656fefe4c862fc09ff8c8e48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletAsset: {fileID: 50208790502512722, guid: 93f343865d2f9d94e98a9f7b01c93169,
-    type: 2}
-  fireSpeed: 0.5
-  weaponCooldown: 3
-  bulletSpeed: 60
-  xOffset: 0
-  YOffset: 0
 --- !u!114 &1464460305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +302,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  bulletAsset: {fileID: 50208790502512722, guid: 93f343865d2f9d94e98a9f7b01c93169,
+    type: 2}
+  shootRate: 0.5
+  shootCooldown: 0
+  bulletSpeed: 60
+  bulletXOffset: 0
+  bulletYOffset: 0
 --- !u!1 &1651999792
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,4 +414,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  bulletAsset: {fileID: 0}
+  shootRate: 0
+  shootCooldown: 0
+  bulletSpeed: 0
+  bulletXOffset: 0
+  bulletYOffset: 0
   playerName: Hero

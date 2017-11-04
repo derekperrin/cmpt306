@@ -17,8 +17,6 @@ public class player : character {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector2 movement = new Vector2(horizontal, vertical);
-
         characterRigidBody.velocity = new Vector2(horizontal * speed, characterRigidBody.velocity.y);
         characterRigidBody.velocity = new Vector2(characterRigidBody.velocity.x, vertical * speed);
     }
@@ -28,5 +26,24 @@ public class player : character {
         throw new System.NotImplementedException();
        //Player cannot move
        //Scene changes to end game screen (play again, quit etc)
+    }
+
+    protected override void FireController()
+    {
+        if (Time.time >= shootCooldown)
+        {
+            if (Input.GetButton("FireX"))
+            {
+                float shootDirX = Input.GetAxisRaw("FireX");
+                Vector2 xMoveVec = new Vector2((shootDirX) * bulletSpeed, 0);
+                Fire(xMoveVec);
+            }
+            else if (Input.GetButton("FireY"))
+            {
+                float shootDirY = Input.GetAxisRaw("FireY");
+                Vector2 yMoveVec = new Vector2(0, (shootDirY) * bulletSpeed);
+                Fire(yMoveVec);
+            }
+        }
     }
 }
