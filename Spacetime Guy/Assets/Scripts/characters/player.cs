@@ -6,17 +6,23 @@ public class player : character {
 
     protected override void Start()
     {
-        heroRigidBody = GetComponent<Rigidbody2D>();
+        characterRigidBody = GetComponent<Rigidbody2D>();
         health = 3f;
         immortal = false;
         lives = 1;
     }
 
-    protected override void GetInput(ref float movementX, ref float movementY)
+    protected override void Movement()
     {
-        movementX = Input.GetAxis("Horizontal");  //A(negative) D(positive) arrow keys 
-        movementY = Input.GetAxis("Vertical");  //S(negative) W(positive) arrow keys 
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector2 movement = new Vector2(horizontal, vertical);
+
+        characterRigidBody.velocity = new Vector2(horizontal * speed, characterRigidBody.velocity.y);
+        characterRigidBody.velocity = new Vector2(characterRigidBody.velocity.x, vertical * speed);
     }
+
     protected override void Die()
     {
         throw new System.NotImplementedException();
