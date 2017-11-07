@@ -7,7 +7,7 @@ using UnityEngine;
  *   - Each game object that implements a child of this abstract class must have a rigidbody2d component in order to
  *     use the Fire() method.
  */
-public abstract class character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     // Character variables
     protected Rigidbody2D characterRigidBody;

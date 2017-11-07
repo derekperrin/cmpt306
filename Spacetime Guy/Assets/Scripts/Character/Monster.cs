@@ -7,7 +7,7 @@ using UnityEngine;
  *   - The Game Object that this script is placed in must have a rigidbody2d component.
  *   - A single game object with name playerToKillName (set in unity) must exist in the game.
  */
-public class monster : character {
+public class Monster : Character {
 
     [SerializeField]
     private string playerToKillName;

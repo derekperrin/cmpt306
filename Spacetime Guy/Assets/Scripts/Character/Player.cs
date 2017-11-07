@@ -6,7 +6,7 @@ using UnityEngine;
  * GameObject requirements for this script:
  *   - The Game Object that this script is placed in must have a rigidbody2d component.
  */
-public class player : character {
+public class Player : Character {
 
     protected override void Start()
     {
