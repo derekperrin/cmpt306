@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/***
+ * GameObject requirements for this script:
+ *   - The Game Object that this script is placed in must have a rigidbody2d component.
+ */
 public class player : character {
 
     protected override void Start()
@@ -21,8 +25,8 @@ public class player : character {
     protected override void Die()
     {
         throw new System.NotImplementedException();
-       //Player cannot move
-       //Scene changes to end game screen (play again, quit etc)
+       // TODO: Player cannot move
+       // TODO: Scene changes to end game screen (play again, quit etc)
     }
 
     protected override void FireController()

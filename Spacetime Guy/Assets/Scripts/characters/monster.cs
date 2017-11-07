@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/***
+ * GameObject requirements for this script:
+ *   - The Game Object that this script is placed in must have a rigidbody2d component.
+ *   - A single game object with name playerToKillName (set in unity) must exist in the game.
+ */
 public class monster : character {
 
-    public string playerToKillName;
+    [SerializeField]
+    private string playerToKillName;
     private GameObject playerToKill;    
 
     protected override void Start() {
