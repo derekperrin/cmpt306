@@ -22,6 +22,8 @@ public class Room {
     //factor to set point at to start room creation
     public int divisionFactor = 4;
     public Rect roomRect;
+    //Whether or not the player starts in this room
+    public Boolean startRoom = false;
 
     public Room(int leafHeight,int leafWidth,int leafXPos,int leafYPos)
     {

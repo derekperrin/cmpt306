@@ -41,53 +41,31 @@ public class Hallways {
     public Hallways(Room startingRoom, Room endingRoom)
     {
         Direction currDir = GetDirection(startingRoom, endingRoom);
-        Debug.Log(currDir);
-        if (currDir == Direction.WEST)
+        //Debug.Log(currDir);
+        if (currDir == Direction.WEST||currDir == Direction.EAST)
         {
-            hallwayHorizontalLength = ((endingRoom.xPos + endingRoom.roomWidth) - startingRoom.xPos) - 1;
-
-
-            startRoomXCorner = startingRoom.xPos;
-            startRoomYCorner = startingRoom.yPos + (endingRoom.roomHeight / 2);
-            endRoomXCorner = endingRoom.xPos + endingRoom.roomWidth;
-            endRoomYCorner = startRoomYCorner;
-            // extra stuff for L-shaped hallways and stuff here: Won't need to happen w/ current iteration of code.
+            startRoomXCorner = startingRoom.xPos + startingRoom.roomWidth/2;
+            startRoomYCorner = startingRoom.yPos + (startingRoom.roomHeight/2);
+            endRoomXCorner = endingRoom.xPos + endingRoom.roomWidth/2;
+            endRoomYCorner = endingRoom.yPos + endingRoom.roomHeight/2;
+            xBendCorner = startRoomXCorner+endRoomXCorner-startRoomXCorner;
+            yBendCorner = startRoomYCorner;
+            hallwayHorizontalLength = xBendCorner - startRoomXCorner;
+            hallwayVerticalLength = endRoomYCorner - yBendCorner;
         }
-        else if (currDir == Direction.EAST)
+        else if (currDir == Direction.SOUTH||currDir == Direction.NORTH)
         {
-            //Hallway is going to the right
-            hallwayHorizontalLength = (endingRoom.xPos - (startingRoom.xPos + startingRoom.roomWidth));
 
-            startRoomXCorner = startingRoom.xPos + startingRoom.roomWidth;
-            startRoomYCorner = startingRoom.yPos + endingRoom.roomHeight / 2;
-
-
-            endRoomXCorner = startingRoom.xPos;
-            endRoomYCorner = startRoomYCorner;
-            // extra stuff for L-shaped hallways and stuff here: Won't need to happen w/ current iteration of code.
-        }
-        else if (currDir == Direction.SOUTH)
-        {
-            hallwayVerticalLength = ((endingRoom.yPos + endingRoom.roomHeight) - startingRoom.yPos);
-
-            startRoomYCorner = startingRoom.yPos;
-            startRoomXCorner = startingRoom.xPos + endingRoom.roomWidth / 2;
+            startRoomYCorner = startingRoom.yPos + startingRoom.roomHeight/2;
+            startRoomXCorner = startingRoom.xPos + startingRoom.roomWidth / 2;
             
             
-            endRoomYCorner = (endingRoom.yPos + endingRoom.roomHeight);
-            endRoomXCorner = startRoomXCorner;
-            // extra stuff for L-shaped hallways and stuff here: Won't need to happen w/ current iteration of code.
-        }
-        else if (currDir == Direction.NORTH)
-        {
-            hallwayVerticalLength = (endingRoom.yPos - (startingRoom.yPos + startingRoom.roomHeight));
-            
-            startRoomYCorner = startingRoom.yPos + startingRoom.roomHeight;
-            startRoomXCorner = startingRoom.xPos + endingRoom.roomWidth / 2;
-            
-            
-            endRoomYCorner = endingRoom.yPos;
-            endRoomXCorner = startRoomXCorner;
+            endRoomYCorner = (endingRoom.yPos + endingRoom.roomHeight/2);
+            endRoomXCorner = endingRoom.xPos + endingRoom.roomWidth/2;
+            xBendCorner = startRoomXCorner;
+            yBendCorner = startRoomYCorner+endRoomYCorner-startRoomYCorner;
+            hallwayVerticalLength = yBendCorner - startRoomYCorner;
+            hallwayHorizontalLength = endRoomXCorner - xBendCorner;
         } else
         {
             Debug.Log("Your Direction function created an error somewhere and you are bad!");
@@ -126,7 +104,17 @@ public class Hallways {
             return Direction.ERROR;
         }
     }
-    
+
+    public bool CheckIfHallwayOverlap(Room endRoom, int xHallwayEnd, int yHallwayEnd)
+    {
+        if ((xHallwayEnd >= endRoom.xPos && xHallwayEnd <= endRoom.xPos + endRoom.roomWidth) &&
+            (yHallwayEnd >= endRoom.yPos && yHallwayEnd <= endRoom.yPos + endRoom.roomHeight))
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
      /**   if (Mathf.Abs(startingRoom.xPos - endingRoom.xPos) > Mathf.Abs(startingRoom.yPos - endingRoom.yPos))
         {
@@ -241,37 +229,7 @@ public class Hallways {
         }
 	}
         */
-   /** public bool CheckIfHallwayOverlap(Room endRoom, int xHallwayEnd,int yHallwayEnd)
-    {
-        if ((xHallwayEnd >= endRoom.xPos && xHallwayEnd <= endRoom.xPos + endRoom.roomWidth) &&
-            (yHallwayEnd >= endRoom.yPos && yHallwayEnd <= endRoom.yPos + endRoom.roomHeight) )
-        {
-            return true;    
-        }
-            return false;
-    }
-    public int WhichWayToBend(Room endRoom, int xBend,int yBend)
-    {
-
-        if (endRoom.xPos > xBend)
-        {
-            return 1;
-        }
-        if (endRoom.xPos < xBend)
-        {
-            return -1;
-        }
-        if (endRoom.yPos > yBend)
-        {
-            return 1;
-        }
-        if (endRoom.yPos > yBend)
-        {
-            return -1;
-        }
-        return 0; */
-    
-
+   
    /*  public int calulateOverlap(int R1LeftCorner, int R2LeftCorner, int R1RightCorner, int R2RightCorner)
     {
         int Overlap;

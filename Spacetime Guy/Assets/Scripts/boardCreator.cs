@@ -25,6 +25,9 @@ public class boardCreator : MonoBehaviour
     //the starting corner for instantiating game objects
     public float yBoardCorner = -20.0f;
     public float xBoardCorner = -40.0f;
+    //Enemies per room
+    public int minEnemies;
+    public int maxEnemies;
 
     // Use this for initialization
     void Start()
@@ -62,21 +65,14 @@ public class boardCreator : MonoBehaviour
         //foreach (Leafs i in childLeafs)
         for (int i = 0; i < (childLeafs.Count - 1); i++)
         {
-            // int temp1 = Random.Range(0, childLeafs.Count);
-            // int temp2 = Random.Range(0, childLeafs.Count);
-            //  while (temp1 == temp2)
-            //  {
-            //temp1 = Random.Range(0, childLeafs.Count);
-            //  }
-            //if (i != null)
-            //{
+            if (i == 1)
+            {
+                childLeafs[i].room.startRoom = true;
+            }
+            
                 Hallways h1 = new Hallways(childLeafs[i].room, childLeafs[i + 1].room);
-            printroom(childLeafs[i].room);
-            printroom(childLeafs[i + 1].room);
-            print(i);
-            print(i + 1);
                 hallwayList.Add(h1);
-            //}
+            
         }
         /**
         foreach (Leafs i in childLeafs)
@@ -101,6 +97,18 @@ public class boardCreator : MonoBehaviour
 
         foreach (Leafs i in childLeafs)
         {
+            int numEnemies = 0; //number of enemies in the room
+            int numPowerups = 0; //number of powerups int the room
+            System.Random randnum = new System.Random();
+            if (i.room.startRoom != true) //determine num of enemies
+            {
+                numEnemies = randnum.Next(minEnemies,maxEnemies);
+            }
+            if (i.room.startRoom != true) //determine num of enemies
+            {
+                numPowerups = randnum.Next(0, 1);
+            }
+
             for (int j = i.room.xPos; j < i.room.xPos + i.room.roomWidth; j++)
             {
                 for (int k = i.room.yPos; k < i.room.yPos + i.room.roomHeight; k++)
@@ -108,41 +116,94 @@ public class boardCreator : MonoBehaviour
                     board[j, k] = 0;
                 }
             }
+            while (numEnemies != 0)
+            {
+                int x = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
+                int y = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
+                //board[x,y] = random Enemy int value
+
+                //add implementation to prevent 2 enemies spawning on same spot
+
+                numEnemies--;
+            }
+            while (numPowerups != 0)
+            {
+                int x = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
+                int y = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
+                //board[x,y] = random powerup int value
+
+                //add implementation to prevent 2 enemies/powerups spawning on same spot
+
+                numPowerups--;
+            }
         }
         print("size of HallwaysList: " + hallwayList.Count);
         foreach (Hallways i in hallwayList)
         {
             //printHallways(i);
             //going left
-            if (i.hallwayHorizontalLength > 0)
+            if ((i.hallwayHorizontalLength > 0)&&(i.startRoomYCorner == i.yBendCorner))
             {
-                for(int j = i.startRoomXCorner; j < i.endRoomXCorner; j++)
+                printHallways(i);
+                for(int j = i.startRoomXCorner; j < i.xBendCorner; j++)
                 {
                     board[j, i.startRoomYCorner] = 0;
                 }
             }
-         //going right
-         else if (i.hallwayHorizontalLength < 0)
+            if ((i.hallwayHorizontalLength > 0)&&(i.yBendCorner == i.endRoomYCorner))
             {
-                for(int j = i.startRoomXCorner; j >= i.endRoomXCorner; j--)
+                printHallways(i);
+                for (int j = i.xBendCorner; j < i.endRoomXCorner; j++)
+                {
+                    board[j, i.yBendCorner] = 0;
+                }
+            }
+            if ((i.hallwayHorizontalLength < 0)&(i.startRoomYCorner == i.yBendCorner))
+            {
+                printHallways(i);
+                for (int j = i.startRoomXCorner; j > i.xBendCorner; j--)
                 {
                     board[j, i.startRoomYCorner] = 0;
                 }
             }
-         //going upward
-         else if (i.hallwayVerticalLength > 0)
+            if ((i.hallwayHorizontalLength < 0)&& (i.yBendCorner == i.endRoomYCorner))
             {
-                for (int j = i.startRoomYCorner; j < i.endRoomYCorner; j++)
+                printHallways(i);
+                for (int j = i.xBendCorner; j > i.endRoomXCorner; j--)
+                {
+                    board[j, i.yBendCorner] = 0;
+                }
+            }
+            if ((i.hallwayVerticalLength > 0) && (i.startRoomXCorner == i.xBendCorner))
+            {
+                printHallways(i);
+                for (int j = i.startRoomYCorner; j < i.yBendCorner; j++)
                 {
                     board[i.startRoomXCorner, j] = 0;
                 }
             }
-         //going downward
-         else if (i.hallwayVerticalLength < 0)
+            if ((i.hallwayVerticalLength > 0) && (i.xBendCorner == i.endRoomXCorner))
             {
-                for (int j = i.startRoomXCorner; j >= i.endRoomYCorner; j--)
+                printHallways(i);
+                for (int j = i.yBendCorner; j < i.endRoomYCorner; j++)
+                {
+                    board[i.xBendCorner, j] = 0;
+                }
+            }
+            if ((i.hallwayVerticalLength < 0) & (i.startRoomXCorner == i.xBendCorner))
+            {
+                printHallways(i);
+                for (int j = i.startRoomYCorner; j > i.yBendCorner; j--)
                 {
                     board[i.startRoomXCorner, j] = 0;
+                }
+            }
+            if ((i.hallwayVerticalLength < 0) && (i.xBendCorner == i.endRoomXCorner))
+            {
+                printHallways(i);
+                for (int j = i.yBendCorner; j > i.endRoomYCorner; j--)
+                {
+                    board[i.xBendCorner, j] = 0;
                 }
             }
 
@@ -204,12 +265,18 @@ public class boardCreator : MonoBehaviour
     void printHallways(Hallways h)
     {
     
-        print("the starting xcoord of hallway is " + h.startRoomXCorner);
+        /*print("the starting xcoord of hallway is " + h.startRoomXCorner);
+        print("the bend xcoord of hallway is " + h.xBendCorner);
         print("the ending xcoord of hallway is " + h.endRoomXCorner);
         print("the starting ycoord of hallway is" + h.startRoomYCorner);
-        print("the ending ycoord of hallway is" + h.endRoomYCorner);
+        print("the bend ycoord of hallway is " + h.yBendCorner);
+        print("the ending ycoord of hallway is" + h.endRoomYCorner);*/
         print("the vertical length is" + h.hallwayVerticalLength);
         print("the horizontal length is" + h.hallwayHorizontalLength);
+        print("starting room x pos" + h.startRoomXCorner);
+        print("starting room y pos" + h.startRoomYCorner);
+        print("ending room x pos" + h.endRoomXCorner);
+        print("ending room y pos" + h.endRoomYCorner);
     }
     void printArray(int[,] board)
     {
