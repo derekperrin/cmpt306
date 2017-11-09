@@ -225,7 +225,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b2cf03fc5bef64895f81323abb9873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpeed: 0
+  characterSpeed: 2
   healthCurrent: 50
   healthMax: 50
   lives: 1
@@ -438,6 +438,8 @@ MonoBehaviour:
   bulletXOffset: 0
   bulletYOffset: 0
   playerToKillName: Hero
+  attack: 50
+  pushForce: 100
 --- !u!58 &1651999797
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -447,7 +449,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

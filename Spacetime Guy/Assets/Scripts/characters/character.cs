@@ -18,7 +18,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected float healthMax; // set to 0 to be immortal
     [SerializeField]
-    protected int lives; 
+    protected int lives;
+    protected bool stunned;
 
     // Bullet Variables
     [SerializeField]
@@ -96,7 +97,6 @@ public abstract class Character : MonoBehaviour
      */
     protected void Fire(Vector2 direction)
     {
-
         Rigidbody2D bPrefab = Instantiate(bulletAsset, new Vector3(transform.position.x + bulletXOffset, transform.position.y + bulletYOffset, transform.position.z), Quaternion.identity) as Rigidbody2D;
         bPrefab.GetComponent<Bullet>().from = gameObject.tag;
         //get parent's momentum when firing.
@@ -110,9 +110,25 @@ public abstract class Character : MonoBehaviour
         shootCooldown = Time.time + shootRate;
     }
 
+    // stun player when hit
+    public void Stun(float stunTime)
+    {
+        this.stunned = true;
+        Invoke("UnStun", stunTime);
+    }
+
+    // un-stun player
+    private void UnStun()
+    {
+        this.stunned = false;
+    }
+
     protected void FixedUpdate()
     {
-        Movement();
+        if (!this.stunned)
+        {
+            Movement();
+        }
     }
 
     protected void Update()

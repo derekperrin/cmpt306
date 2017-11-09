@@ -11,15 +11,14 @@ public class Player : Character {
     protected override void Start()
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
+        stunned = false;
     }
 
     protected override void Movement()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-
-        characterRigidBody.velocity = new Vector2(horizontal * characterSpeed, characterRigidBody.velocity.y);
-        characterRigidBody.velocity = new Vector2(characterRigidBody.velocity.x, vertical * characterSpeed);
+        characterRigidBody.velocity = new Vector2(horizontal * characterSpeed, vertical * characterSpeed);
     }
 
     protected override void Die()

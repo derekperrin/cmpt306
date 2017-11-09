@@ -11,7 +11,11 @@ public class Monster : Character {
 
     [SerializeField]
     private string playerToKillName;
-    private GameObject playerToKill;    
+    private GameObject playerToKill;
+    [SerializeField]
+    private float attack;
+    [SerializeField]
+    private float pushForce;
 
     protected override void Start() {
         playerToKill = GameObject.Find(playerToKillName);
@@ -20,8 +24,7 @@ public class Monster : Character {
 
     protected override void Movement()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, playerToKill.transform.position, characterSpeed * Time.deltaTime);
-
+        characterRigidBody.velocity = (playerToKill.transform.position - this.gameObject.transform.position).normalized * this.characterSpeed;
         //Quaternion rotation = Quaternion.LookRotation(playerToKill.transform.position - this.transform.position, this.transform.TransformDirection(Vector3.up));
         //this.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
     }
@@ -34,5 +37,19 @@ public class Monster : Character {
     protected override void FireController()
     {
         // This monster does not shoot.
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Used mainly for when the monster crashes into the player
+        if (collision.gameObject.tag == "Player")
+        {
+            // Debug.Log("Monster has struck player");
+            playerToKill.SendMessage("TakeDamage", attack);
+            playerToKill.GetComponent<Player>().Stun(1.0f);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(this.characterRigidBody.velocity.normalized * pushForce);
+            characterRigidBody.velocity = new Vector2(0f, 0f);
+            this.Stun(1.0f);
+        }
     }
 }
