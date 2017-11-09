@@ -131,7 +131,7 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         FireController();
     }

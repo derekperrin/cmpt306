@@ -164,7 +164,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &232199977
 Transform:
@@ -301,6 +301,8 @@ MonoBehaviour:
   wall: {fileID: 232199975}
   yBoardCorner: -20
   xBoardCorner: -40
+  minEnemies: 0
+  maxEnemies: 0
 --- !u!4 &1224045628
 Transform:
   m_ObjectHideFlags: 0

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class SpeedPowerUp : PowerUp {
 
-	protected override void startPowerUp()
+    private float speedMultiplier = 1.4f;
+
+    protected override void startPowerUp()
     {
-        //OnCollision2D(Rid){
-        //
-        //}
+        Rigidbody2D temp;
+        temp = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        temp.velocity = temp.velocity * speedMultiplier;
+        
     }
+      
 
     protected override void startPowerDown()
     {

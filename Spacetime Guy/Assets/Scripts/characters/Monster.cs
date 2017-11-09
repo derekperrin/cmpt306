@@ -18,14 +18,33 @@ public class Monster : Character {
     private float pushForce;
 
     protected override void Start() {
-        playerToKill = GameObject.Find(playerToKillName);
+       
+   
+        
         characterRigidBody = GetComponent<Rigidbody2D>();
 	}
+    protected override void Update()
+    {
+        if (GameObject.FindGameObjectWithTag(playerToKillName)!=null)
+        {
+            playerToKill = GameObject.FindGameObjectWithTag(playerToKillName);
+        }
+    }
 
     protected override void Movement()
     {
-        characterRigidBody.velocity = (playerToKill.transform.position - this.gameObject.transform.position).normalized * this.characterSpeed;
-        //Quaternion rotation = Quaternion.LookRotation(playerToKill.transform.position - this.transform.position, this.transform.TransformDirection(Vector3.up));
+        try {
+            
+            characterRigidBody.velocity = (playerToKill.transform.position - this.gameObject.transform.position).normalized * this.characterSpeed;
+            
+        } catch(System.NullReferenceException e)
+        {
+
+        }
+            
+            
+            
+            //Quaternion rotation = Quaternion.LookRotation(playerToKill.transform.position - this.transform.position, this.transform.TransformDirection(Vector3.up));
         //this.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
     }
 

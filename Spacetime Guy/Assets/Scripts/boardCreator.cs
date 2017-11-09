@@ -19,6 +19,10 @@ public class boardCreator : MonoBehaviour
     //array of objects
     private GameObject[,] playfield;
     public GameObject wall;
+    public GameObject player;
+    public GameObject enemy1;
+    public GameObject enemy2;
+    public GameObject powerup;
     private Room[] rooms;
     private GameObject boardHolder;
     public List<Leafs> childLeafs;
@@ -55,7 +59,7 @@ public class boardCreator : MonoBehaviour
             }
         }
         this.createrooms(root);
-        
+
         foreach (Leafs i in childLeafs)
         {
             i.room = new Room(i.height, i.width, i.xpos, i.ypos);
@@ -69,10 +73,10 @@ public class boardCreator : MonoBehaviour
             {
                 childLeafs[i].room.startRoom = true;
             }
-            
-                Hallways h1 = new Hallways(childLeafs[i].room, childLeafs[i + 1].room);
-                hallwayList.Add(h1);
-            
+
+            Hallways h1 = new Hallways(childLeafs[i].room, childLeafs[i + 1].room);
+            hallwayList.Add(h1);
+
         }
         /**
         foreach (Leafs i in childLeafs)
@@ -94,20 +98,10 @@ public class boardCreator : MonoBehaviour
                 board[i, j] = 1;
             }
         }
-
+        int countE = 0;
         foreach (Leafs i in childLeafs)
         {
-            int numEnemies = 0; //number of enemies in the room
-            int numPowerups = 0; //number of powerups int the room
-            System.Random randnum = new System.Random();
-            if (i.room.startRoom != true) //determine num of enemies
-            {
-                numEnemies = randnum.Next(minEnemies,maxEnemies);
-            }
-            if (i.room.startRoom != true) //determine num of enemies
-            {
-                numPowerups = randnum.Next(0, 1);
-            }
+
 
             for (int j = i.room.xPos; j < i.room.xPos + i.room.roomWidth; j++)
             {
@@ -116,99 +110,149 @@ public class boardCreator : MonoBehaviour
                     board[j, k] = 0;
                 }
             }
-            while (numEnemies != 0)
-            {
-                int x = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
-                int y = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
-                //board[x,y] = random Enemy int value
 
-                //add implementation to prevent 2 enemies spawning on same spot
-
-                numEnemies--;
-            }
-            while (numPowerups != 0)
-            {
-                int x = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
-                int y = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
-                //board[x,y] = random powerup int value
-
-                //add implementation to prevent 2 enemies/powerups spawning on same spot
-
-                numPowerups--;
-            }
         }
+
         print("size of HallwaysList: " + hallwayList.Count);
         foreach (Hallways i in hallwayList)
         {
             //printHallways(i);
             //going left
-            if ((i.hallwayHorizontalLength > 0)&&(i.startRoomYCorner == i.yBendCorner))
+            if ((i.hallwayHorizontalLength > 0) && (i.startRoomYCorner == i.yBendCorner))
             {
-                printHallways(i);
-                for(int j = i.startRoomXCorner; j < i.xBendCorner; j++)
+                //printHallways(i);
+                for (int j = i.startRoomXCorner; j < i.xBendCorner; j++)
                 {
                     board[j, i.startRoomYCorner] = 0;
+                    board[j, i.startRoomYCorner + 1] = 0;
                 }
             }
-            if ((i.hallwayHorizontalLength > 0)&&(i.yBendCorner == i.endRoomYCorner))
+            if ((i.hallwayHorizontalLength > 0) && (i.yBendCorner == i.endRoomYCorner))
             {
-                printHallways(i);
+                //printHallways(i);
                 for (int j = i.xBendCorner; j < i.endRoomXCorner; j++)
                 {
                     board[j, i.yBendCorner] = 0;
+                    board[j, i.yBendCorner + 1] = 0;
                 }
             }
-            if ((i.hallwayHorizontalLength < 0)&(i.startRoomYCorner == i.yBendCorner))
+            if ((i.hallwayHorizontalLength < 0) & (i.startRoomYCorner == i.yBendCorner))
             {
-                printHallways(i);
+                //printHallways(i);
                 for (int j = i.startRoomXCorner; j > i.xBendCorner; j--)
                 {
                     board[j, i.startRoomYCorner] = 0;
+                    board[j, i.startRoomYCorner - 1] = 0;
                 }
             }
-            if ((i.hallwayHorizontalLength < 0)&& (i.yBendCorner == i.endRoomYCorner))
+            if ((i.hallwayHorizontalLength < 0) && (i.yBendCorner == i.endRoomYCorner))
             {
-                printHallways(i);
+                //printHallways(i);
                 for (int j = i.xBendCorner; j > i.endRoomXCorner; j--)
                 {
                     board[j, i.yBendCorner] = 0;
+                    board[j, i.yBendCorner - 1] = 0;
                 }
             }
             if ((i.hallwayVerticalLength > 0) && (i.startRoomXCorner == i.xBendCorner))
             {
-                printHallways(i);
+                //printHallways(i);
                 for (int j = i.startRoomYCorner; j < i.yBendCorner; j++)
                 {
                     board[i.startRoomXCorner, j] = 0;
+                    board[i.startRoomXCorner - 1, j] = 0;
                 }
             }
             if ((i.hallwayVerticalLength > 0) && (i.xBendCorner == i.endRoomXCorner))
             {
-                printHallways(i);
+                //printHallways(i);
                 for (int j = i.yBendCorner; j < i.endRoomYCorner; j++)
                 {
                     board[i.xBendCorner, j] = 0;
+                    board[i.xBendCorner + 1, j] = 0;
                 }
             }
             if ((i.hallwayVerticalLength < 0) & (i.startRoomXCorner == i.xBendCorner))
             {
-                printHallways(i);
+                //printHallways(i);
                 for (int j = i.startRoomYCorner; j > i.yBendCorner; j--)
                 {
                     board[i.startRoomXCorner, j] = 0;
+                    board[i.startRoomXCorner - 1, j] = 0;
                 }
             }
             if ((i.hallwayVerticalLength < 0) && (i.xBendCorner == i.endRoomXCorner))
             {
-                printHallways(i);
+                //printHallways(i);
                 for (int j = i.yBendCorner; j > i.endRoomYCorner; j--)
                 {
                     board[i.xBendCorner, j] = 0;
+                    board[i.xBendCorner - 1, j] = 0;
+
+
                 }
             }
 
         }
-    
+        foreach (Leafs i in childLeafs)
+        {
+            int numEnemies1 = 0; //number of enemies in the room
+            int numEnemies2 = 0; //number of enemies in the room
+            int numPowerups = 0; //number of powerups int the room
+            System.Random randnum = new System.Random();
+            if (i.room.startRoom != true) //determine num of enemies
+            {
+                numEnemies1 = randnum.Next(minEnemies, maxEnemies);
+                numEnemies2 = randnum.Next(minEnemies, maxEnemies);
+                //countE += numEnemies;
+            }
+            if (i.room.startRoom != true) //determine num of enemies
+            {
+                numPowerups = 1;
+            }
+            //find location of enemy type 1
+            while (numEnemies1 != 0)
+            {
+                int x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
+                int y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
+                board[x, y] = 2;
+
+                //add implementation to prevent 2 enemies spawning on same spot
+
+                numEnemies1--;
+            }
+            //find location of enemy type 2
+            while (numEnemies2 != 0)
+            {
+                int x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
+                int y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
+                board[x, y] = 3;
+
+                //add implementation to prevent 2 enemies spawning on same spot
+
+                numEnemies2--;
+            }
+            //find location of powerups
+            while (numPowerups != 0)
+            {
+                int x = randnum.Next(i.room.xPos, i.room.xPos + i.room.roomWidth);
+                int y = randnum.Next(i.room.yPos, i.room.yPos + i.room.roomHeight);
+                board[x, y] = 6;
+
+                //add implementation to prevent 2 enemies/powerups spawning on same spot
+
+                numPowerups--;
+            }
+            ///set location of character
+            if (i.room.startRoom)
+            {
+
+                print(i.room.xPos + i.room.roomWidth / 2 + "," + i.room.yPos + i.room.roomHeight / 2);
+                board[i.room.xPos + i.room.roomWidth / 2, i.room.yPos + i.room.roomHeight / 2] = 5;
+            }
+        }
+        int count = 0;
+        //instantiate walls and players
         for (int j = 0; j < levelWidth; j++)
         {
             for (int k = 0; k < levelHeight; k++)
@@ -219,14 +263,55 @@ public class boardCreator : MonoBehaviour
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
                     Instantiate(wall, position, rotation);
                 }
+                if (board[j, k] == 5)
+                {
+                    Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    Instantiate(player, position, rotation);
+                    //print("player");
+                }
+
+            }
+
+        }
+        //Instantiate enemy types and powerups
+        for (int j = 0; j < levelWidth; j++)
+        {
+            for (int k = 0; k < levelHeight; k++)
+            {
+
+                if (board[j, k] == 2)
+                {
+
+                    Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    Instantiate(enemy1, position, rotation);
+                    //print("enemy1");
+                }
+                if (board[j, k] == 3) {
+                    Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    Instantiate(enemy2, position, rotation);
+                    //print("enemy2");
+                }
+                if (board[j, k] == 6)
+                {
+                    Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    Instantiate(powerup, position, rotation);
+                    
+                }
             }
         }
+    
+        //print("num enemies" + count);
         //this.printArray(board);
-    //}
+        //}
 
 
-       
+
     }
+    //cretes rooms
     void createrooms(Leafs l)
     {
         if(l.leftChild != null || l.rightChild != null)
@@ -245,7 +330,7 @@ public class boardCreator : MonoBehaviour
             this.childLeafs.Add(l);
         }
     } 
-
+    //prints rooms
     void printroom(Room r)
     {
         print("The x coordinate is " +  r.xPos);
