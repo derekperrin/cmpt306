@@ -7,7 +7,7 @@ using UnityEngine;
  *   - Each game object that implements a child of this abstract class must have a rigidbody2d component in order to
  *     use the Fire() method.
  */
-public abstract class character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     // Character variables
     protected Rigidbody2D characterRigidBody;
@@ -58,11 +58,11 @@ public abstract class character : MonoBehaviour
         healthCurrent = healthCurrent - damage;
         if (healthCurrent <= 0)
         {
+            lives = lives - 1;
             //Handle some stuff with lives
             if (lives <= 0)
                 Die();
             else {
-                lives = lives - 1;
                 healthCurrent = healthMax;
             }
         }
@@ -75,9 +75,9 @@ public abstract class character : MonoBehaviour
     protected abstract void Die();
 
     /***
-     * This method must be implimented by a child class.
+     * This method must be implemented by a child class.
      * 
-     * This method should be implimented to control how and when the method Fire() is 
+     * This method should be implemented to control how and when the method Fire() is 
      * called. This method is responsible for creating and supplying the Vector2 
      * direction variable to Fire(). This method is called every time the game updates
      * using the Update() method.
@@ -98,6 +98,7 @@ public abstract class character : MonoBehaviour
     {
 
         Rigidbody2D bPrefab = Instantiate(bulletAsset, new Vector3(transform.position.x + bulletXOffset, transform.position.y + bulletYOffset, transform.position.z), Quaternion.identity) as Rigidbody2D;
+        bPrefab.GetComponent<Bullet>().from = gameObject.tag;
         //get parent's momentum when firing.
         Vector2 playerVelocity = (this.GetComponent<Rigidbody2D>().velocity);
         int velocityMultiplier = 10;

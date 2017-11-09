@@ -7,7 +7,7 @@ using UnityEngine;
  *   - The Game Object that this script is placed in must have a rigidbody2d component.
  *   - A single game object with name playerToKillName (set in unity) must exist in the game.
  */
-public class monster : character {
+public class Monster : Character {
 
     [SerializeField]
     private string playerToKillName;
@@ -22,8 +22,8 @@ public class monster : character {
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, playerToKill.transform.position, characterSpeed * Time.deltaTime);
 
-        Quaternion rotation = Quaternion.LookRotation(playerToKill.transform.position - this.transform.position, this.transform.TransformDirection(Vector3.up));
-        this.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+        //Quaternion rotation = Quaternion.LookRotation(playerToKill.transform.position - this.transform.position, this.transform.TransformDirection(Vector3.up));
+        //this.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
     }
 
     protected override void Die()
