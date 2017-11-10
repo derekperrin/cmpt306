@@ -23,10 +23,10 @@ public abstract class Character : MonoBehaviour
 
     // Bullet Variables
     [SerializeField]
-    private Rigidbody2D bulletAsset; // To be set in Unity
+    private Rigidbody2D bulletAsset;
     [SerializeField]
-    protected float shootRate; // To be set in Unity
-    protected float shootCooldown; // To be set in Unity
+    protected float shootRate;
+    protected float shootCooldown;
     [SerializeField]
     protected float bulletSpeed;
 

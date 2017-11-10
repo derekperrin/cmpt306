@@ -13,19 +13,17 @@ public class Monster : Character {
     private string playerToKillName;
     private GameObject playerToKill;
     [SerializeField]
-    private float attack;
+    private float meleeDamage;
     [SerializeField]
     private float pushForce;
 
-    protected override void Start() {
-       
-   
-        
+    protected override void Start()
+    {
         characterRigidBody = GetComponent<Rigidbody2D>();
 	}
     protected override void Update()
     {
-        if (GameObject.FindGameObjectWithTag(playerToKillName)!=null)
+        if (playerToKill == null)
         {
             playerToKill = GameObject.FindGameObjectWithTag(playerToKillName);
         }
@@ -64,7 +62,7 @@ public class Monster : Character {
         if (collision.gameObject.tag == "Player")
         {
             // Debug.Log("Monster has struck player");
-            playerToKill.SendMessage("TakeDamage", attack);
+            playerToKill.SendMessage("TakeDamage", meleeDamage);
             playerToKill.GetComponent<Player>().Stun(1.0f);
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(this.characterRigidBody.velocity.normalized * pushForce);
             characterRigidBody.velocity = new Vector2(0f, 0f);

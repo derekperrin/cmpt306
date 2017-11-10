@@ -20,12 +20,14 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != this.from && !collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.tag != this.from)
         {
-            collision.gameObject.SendMessage("TakeDamage", bulletDamage);
+            if (!collision.gameObject.name.StartsWith("wall"))
+            {
+                collision.gameObject.SendMessage("TakeDamage", bulletDamage);
+            }
             Destroy(this.gameObject);
         }
-        Debug.Log("entered trigger");
     }
 
 }
