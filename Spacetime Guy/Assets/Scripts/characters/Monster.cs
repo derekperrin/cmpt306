@@ -11,7 +11,7 @@ public class Monster : Character {
 
     [SerializeField]
     private string playerToKillName;
-    private GameObject playerToKill;
+    protected GameObject playerToKill;
     [SerializeField]
     private float meleeDamage;
     [SerializeField]
@@ -27,6 +27,7 @@ public class Monster : Character {
 	}
     protected override void Update()
     {
+        base.Update(); // call the parent's update method.
         if (playerToKill == null)
         {
             playerToKill = GameObject.FindGameObjectWithTag(playerToKillName);
@@ -46,7 +47,7 @@ public class Monster : Character {
             
             
             
-            //Quaternion rotation = Quaternion.LookRotation(playerToKill.transform.position - this.transform.position, this.transform.TransformDirection(Vector3.up));
+        //Quaternion rotation = Quaternion.LookRotation(playerToKill.transform.position - this.transform.position, this.transform.TransformDirection(Vector3.up));
         //this.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
     }
 
