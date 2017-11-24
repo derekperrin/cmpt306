@@ -12,7 +12,7 @@ public abstract class Character : MonoBehaviour
     // Character variables
     protected Rigidbody2D characterRigidBody;
     [SerializeField]
-    protected float characterSpeed;
+    public float characterSpeed;
     [SerializeField]
     protected float healthCurrent;
     [SerializeField]
