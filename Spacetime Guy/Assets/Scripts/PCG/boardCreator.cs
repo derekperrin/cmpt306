@@ -32,6 +32,7 @@ public class boardCreator : MonoBehaviour
     //Enemies per room
     public int minEnemies;
     public int maxEnemies;
+    public int roomsBlackedOutRatio = 3;
 
     // Use this for initialization
     void Start()
@@ -60,36 +61,40 @@ public class boardCreator : MonoBehaviour
         }
         this.createrooms(root);
 
+        //Create new rooms for each in leaf
         foreach (Leafs i in childLeafs)
         {
             i.room = new Room(i.height, i.width, i.xpos, i.ypos);
         }
+        System.Random randroomblacked = new System.Random();
+
+        //final room/leaf list
+        List<Leafs> finalLeafList = new List<Leafs>();
+        foreach (Leafs i in childLeafs)
+        {
+            int temp = randroomblacked.Next(0,roomsBlackedOutRatio);
+            if (temp != 0)
+            {
+                finalLeafList.Add(i);
+            }
+        }
+        //instantiate hallway list
         hallwayList = new List<Hallways>();
 
+
         //foreach (Leafs i in childLeafs)
-        for (int i = 0; i < (childLeafs.Count - 1); i++)
+        for (int i = 0; i < (finalLeafList.Count - 1); i++)
         {
             if (i == 1)
             {
-                childLeafs[i].room.startRoom = true;
+                finalLeafList[i].room.startRoom = true;
             }
 
-            Hallways h1 = new Hallways(childLeafs[i].room, childLeafs[i + 1].room);
+            Hallways h1 = new Hallways(finalLeafList[i].room, finalLeafList[i + 1].room);
             hallwayList.Add(h1);
 
         }
-        /**
-        foreach (Leafs i in childLeafs)
-        {
-            printroom(i.room);
-        }
-        print("END OF PRINT ROOMSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-       
-        foreach (Leafs i in childLeafs)
-        {
-            printleaf(i);
-        }
-        */
+        
         board = new int[levelHeight, levelWidth];
         for (int i = 0; i < levelWidth; i++)
         {
@@ -99,7 +104,7 @@ public class boardCreator : MonoBehaviour
             }
         }
         int countE = 0;
-        foreach (Leafs i in childLeafs)
+        foreach (Leafs i in finalLeafList)
         {
 
 
@@ -194,12 +199,13 @@ public class boardCreator : MonoBehaviour
             }
 
         }
-        foreach (Leafs i in childLeafs)
+        System.Random randnum = new System.Random();
+        foreach (Leafs i in finalLeafList)
         {
             int numEnemies1 = 0; //number of enemies in the room
             int numEnemies2 = 0; //number of enemies in the room
             int numPowerups = 0; //number of powerups int the room
-            System.Random randnum = new System.Random();
+            
             if (i.room.startRoom != true) //determine num of enemies
             {
                 numEnemies1 = randnum.Next(minEnemies, maxEnemies);
