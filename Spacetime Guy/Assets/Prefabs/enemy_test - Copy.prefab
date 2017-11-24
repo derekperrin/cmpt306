@@ -99,8 +99,9 @@ MonoBehaviour:
   bulletXOffset: 0
   bulletYOffset: 0
   playerToKillName: Player
-  attack: 50
+  meleeDamage: 0
   pushForce: 50
+  deathSound: {fileID: 8300000, guid: 3135d2dd5a27d92448eab1a22b3b2687, type: 3}
 --- !u!212 &212283195462533564
 SpriteRenderer:
   m_ObjectHideFlags: 1
