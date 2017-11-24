@@ -14,7 +14,8 @@ public class CameraController : MonoBehaviour {
 
         if (ObjectToTrack != null)
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(ObjectToTrack.transform.position.x, ObjectToTrack.transform.position.y, this.transform.position.z), movementSpeed * Time.deltaTime);
+            //this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(ObjectToTrack.transform.position.x, ObjectToTrack.transform.position.y, this.transform.position.z), movementSpeed * Time.deltaTime);
+            this.GetComponent<Rigidbody2D>().velocity = ObjectToTrack.transform.position - this.transform.position;
         }
         else {
             ObjectToTrack = GameObject.FindGameObjectWithTag("Player");
