@@ -5,24 +5,40 @@ using UnityEngine;
 public class boardCreator : MonoBehaviour
 {
 
+    //minimum size of leafs/also effects rooms
+    public int minLeaf = 20;
 
-    public int maxLeaf = 20;
     public List<Leafs> leafs;
     public List<Hallways> hallwayList;
-    public int levelHeight = 30;
-    public int levelWidth = 30;
-    //public GameObject[] floor;
-    //public GameObject[] wall;
-    //public GameObject[] outerwall;
-    //public GameObject player;
+    //level dimensions
+    public int levelHeight = 100;
+    public int levelWidth = 100;
+    //level theme
+    public char levelType = 'B';
+    //game board in int form
     private int[,] board;
     //array of objects
     private GameObject[,] playfield;
-    public GameObject wall;
+    //GameObjects
+    //types of backgrounds
+    public GameObject basicBackground;
+    public GameObject fireBackground;
+    //types of walls
+    public GameObject basicWall;
+    public GameObject fireWall;
+
+    //player object
     public GameObject player;
-    public GameObject enemy1;
-    public GameObject enemy2;
+
+    //types of enemmies
+    public GameObject basicBasicEnemy;
+    public GameObject basicFastEnemy;
+    public GameObject fireBasicEnemy;
+    public GameObject fireFastEnemy;
+
+    //types of powerups
     public GameObject powerup;
+
     private Room[] rooms;
     private GameObject boardHolder;
     public List<Leafs> childLeafs;
@@ -33,11 +49,13 @@ public class boardCreator : MonoBehaviour
     public int minEnemies;
     public int maxEnemies;
     public int roomsBlackedOutRatio = 3;
+    //GameObject Map
+    
 
     // Use this for initialization
     void Start()
     {
-        Leafs root = new Leafs(0, 0, levelWidth, levelHeight);
+        Leafs root = new Leafs(0, 0, levelWidth, levelHeight, minLeaf);
         leafs = new List<Leafs>();
         childLeafs = new List<Leafs>();
         leafs.Add(root);
@@ -258,6 +276,38 @@ public class boardCreator : MonoBehaviour
             }
         }
         int count = 0;
+
+        generateLevelTheme();
+
+    }
+
+    //populates the game board according to the level type
+    void generateLevelTheme()
+    {
+        generateLevelType();
+        GameObject wall = null;
+        GameObject basicEnemy = null;
+        GameObject fastEnemy = null;
+        GameObject background = null;
+        if (levelType == 'F')
+        {
+            background = fireBackground;
+            wall = fireWall;
+            basicEnemy = fireBasicEnemy;
+            fastEnemy = fireFastEnemy;
+        }
+        if (levelType == 'B')
+        {
+            background = basicBackground;
+            wall = basicWall;
+            basicEnemy = basicBasicEnemy;
+            fastEnemy = basicFastEnemy;
+
+        }
+        Vector2 position1 = new Vector2(xBoardCorner + levelHeight/2,yBoardCorner+ levelWidth/2);
+        Quaternion rotation1 = Quaternion.Euler(0, 0, 0);
+        Instantiate(background, position1, rotation1);
+
         //instantiate walls and players
         for (int j = 0; j < levelWidth; j++)
         {
@@ -291,13 +341,14 @@ public class boardCreator : MonoBehaviour
 
                     Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
-                    Instantiate(enemy1, position, rotation);
+                    Instantiate(basicEnemy, position, rotation);
                     //print("enemy1");
                 }
-                if (board[j, k] == 3) {
+                if (board[j, k] == 3)
+                {
                     Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
-                    Instantiate(enemy2, position, rotation);
+                    Instantiate(fastEnemy, position, rotation);
                     //print("enemy2");
                 }
                 if (board[j, k] == 6)
@@ -305,18 +356,30 @@ public class boardCreator : MonoBehaviour
                     Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
                     Instantiate(powerup, position, rotation);
-                    
+
                 }
             }
         }
-    
-        //print("num enemies" + count);
-        //this.printArray(board);
-        //}
-
-
-
     }
+
+    //generate the type/theme of the level
+    void generateLevelType()
+    {
+        System.Random randnum = new System.Random();
+        //generates the level type from the available pool
+        int temp = randnum.Next(0,100);
+        //basic level type
+        if(temp >= 50) { levelType = 'B'; }
+        //fire level type
+        if (temp <= 50) { levelType = 'F'; }
+        //ice level type
+        if (temp == 2) { levelType = 'I'; }
+        //jungle level type
+        if (temp == 3) { levelType = 'J'; }
+        //space station level type
+        if (temp == 4) { levelType = 'S'; }
+    }
+
     //cretes rooms
     void createrooms(Leafs l)
     {

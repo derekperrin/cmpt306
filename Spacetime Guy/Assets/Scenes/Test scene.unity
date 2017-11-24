@@ -257,18 +257,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc823324c3539846a6c0a9b81ad9a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLeaf: 20
+  minLeaf: 8
   levelHeight: 100
   levelWidth: 100
-  wall: {fileID: 1538844572990876, guid: 8b375e35647040e47885018d1971bce5, type: 2}
+  levelType: 66
+  basicBackground: {fileID: 1818529289694132, guid: 8b4bd5a29acafef4db50007e4e71ee7c,
+    type: 2}
+  fireBackground: {fileID: 1601836717085094, guid: ed4acec4f9211a8429608d82ff58efb1,
+    type: 2}
+  basicWall: {fileID: 1538844572990876, guid: 8b375e35647040e47885018d1971bce5, type: 2}
+  fireWall: {fileID: 1817764276597976, guid: 5a1561e8bbac7e54cba3cdca22c69399, type: 2}
   player: {fileID: 1306214321584102, guid: 0788bacf40399ae48b1554a2795341bf, type: 2}
-  enemy1: {fileID: 1166828797326084, guid: 607892fcc186ef44980c6f80cce524f1, type: 2}
-  enemy2: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf, type: 2}
+  basicBasicEnemy: {fileID: 1166828797326084, guid: 607892fcc186ef44980c6f80cce524f1,
+    type: 2}
+  basicFastEnemy: {fileID: 1166828797326084, guid: 607892fcc186ef44980c6f80cce524f1,
+    type: 2}
+  fireBasicEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
+    type: 2}
+  fireFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
+    type: 2}
   powerup: {fileID: 1125303040525798, guid: 3e9dc910abeea48449c4a157b036fdf0, type: 2}
   yBoardCorner: -20
   xBoardCorner: -40
   minEnemies: 1
   maxEnemies: 3
+  roomsBlackedOutRatio: 2
 --- !u!212 &412262042
 SpriteRenderer:
   m_ObjectHideFlags: 0
