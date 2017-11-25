@@ -103,7 +103,7 @@ MonoBehaviour:
   pushForce: 1000
   deathSound: {fileID: 8300000, guid: 3135d2dd5a27d92448eab1a22b3b2687, type: 3}
   AI_playerSearchDistance: 10
-  AI_updateLength: 0
+  AI_updateLength: 2
 --- !u!212 &212283195462533564
 SpriteRenderer:
   m_ObjectHideFlags: 1
