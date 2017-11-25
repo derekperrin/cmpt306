@@ -3,20 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-
-    [SerializeField]
+    
     private float bulletDamage; 
     public string from; // game object that fired bullet
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,6 +17,11 @@ public class Bullet : MonoBehaviour {
             }
             Destroy(this.gameObject);
         }
+    }
+
+    public void setBulletDamage(float bulletDamage)
+    {
+        this.bulletDamage = bulletDamage;
     }
 
 }
