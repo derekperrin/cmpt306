@@ -4,15 +4,12 @@ using UnityEngine;
 
 public abstract class PowerUp : MonoBehaviour {
 
-   protected abstract void startPowerUp();
+   protected abstract void startPowerUp(Collider2D collider);
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player")
-        {
-            startPowerUp();
-            Destroy(this.gameObject);
-        }
+        Debug.Log(collider.gameObject.name + " has collided with a power up object!");
+        startPowerUp(collider);
     }
    protected abstract void startPowerDown();
  

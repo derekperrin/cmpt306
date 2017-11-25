@@ -15,11 +15,12 @@ public class Leafs{
     //public Hallway hallway;
 
 	// Use this for initialization
-	public Leafs(int x, int y, int w, int h) {
+	public Leafs(int x, int y, int w, int h, int minLeaf) {
         xpos = x;
         ypos = y;
         width = w;
         height = h;
+        leafSize = minLeaf;
 	}
 
     public bool split()
@@ -46,13 +47,13 @@ public class Leafs{
         int split = random.Next(leafSize, max);
         if (splitHorizontal)
         {
-            leftChild = new Leafs(xpos, ypos, width, split);
-            rightChild = new Leafs(xpos, ypos + split, width, height - split);
+            leftChild = new Leafs(xpos, ypos, width, split, leafSize);
+            rightChild = new Leafs(xpos, ypos + split, width, height - split, leafSize);
         }
         else
         {
-            leftChild = new Leafs(xpos, ypos, split, height);
-            rightChild = new Leafs(xpos + split, ypos, width-split, height);
+            leftChild = new Leafs(xpos, ypos, split, height, leafSize);
+            rightChild = new Leafs(xpos + split, ypos, width-split, height, leafSize);
         }
         return true;
 

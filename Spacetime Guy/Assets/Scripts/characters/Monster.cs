@@ -16,10 +16,14 @@ public class Monster : Character {
     private float meleeDamage;
     [SerializeField]
     private float pushForce;
+    private AudioSource soundPlayer;
+    [SerializeField]
+    private AudioClip deathSound;
 
     protected override void Start()
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
+        soundPlayer = GameObject.FindGameObjectWithTag("SoundPlayer").GetComponent<AudioSource>();
 	}
     protected override void Update()
     {
@@ -48,6 +52,7 @@ public class Monster : Character {
 
     protected override void Die()
     {
+        soundPlayer.SendMessage("Play", deathSound);
         Destroy(this.gameObject);
     }
 

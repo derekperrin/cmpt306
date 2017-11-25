@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
     {
         if (collision.gameObject.tag != this.from)
         {
-            if (!collision.gameObject.name.StartsWith("wall"))
+            if (collision.gameObject.GetComponent<Character>() != null) // make sure that it's a Character that we send the message to.
             {
                 collision.gameObject.SendMessage("TakeDamage", bulletDamage);
             }
