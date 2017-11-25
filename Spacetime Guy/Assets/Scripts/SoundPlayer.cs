@@ -12,7 +12,6 @@ public class SoundPlayer : MonoBehaviour {
 	
 	public void Play(AudioClip sound)
     {
-        Debug.Log("Playing Sound...");
         audioPlayer.PlayOneShot(sound);
     }
 }
