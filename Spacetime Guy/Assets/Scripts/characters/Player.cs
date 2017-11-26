@@ -12,7 +12,7 @@ public class Player : Character {
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
         stunned = false;
-        currentWeapon = new Pistol(this.gameObject);
+        currentWeapon = new MachineGun(this.gameObject);
     }
 
     protected override void Movement()

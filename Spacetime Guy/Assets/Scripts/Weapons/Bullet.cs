@@ -9,14 +9,15 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != this.from)
+        if (collision.gameObject.tag == this.from || collision.gameObject.GetComponent<Bullet>() != null)
+            return;
+        
+        if (collision.gameObject.GetComponent<Character>() != null) // make sure that it's a Character that we send the message to.
         {
-            if (collision.gameObject.GetComponent<Character>() != null) // make sure that it's a Character that we send the message to.
-            {
-                collision.gameObject.SendMessage("TakeDamage", bulletDamage);
-            }
-            Destroy(this.gameObject);
+            collision.gameObject.SendMessage("TakeDamage", bulletDamage);
         }
+        Destroy(this.gameObject);
+        
     }
 
     public void setBulletDamage(float bulletDamage)
