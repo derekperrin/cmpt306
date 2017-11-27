@@ -25,7 +25,9 @@ public class Player : Character {
 
     protected override void Die()
     {
-        throw new System.NotImplementedException();
+        Time.timeScale = 0;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+       //throw new System.NotImplementedException();
        // TODO: Player cannot move
        // TODO: Scene changes to end game screen (play again, quit etc)
     }

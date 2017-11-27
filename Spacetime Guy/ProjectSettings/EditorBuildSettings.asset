@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test scene.unity
     guid: 965c5bf512802d8438f303439debfb3d
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: ba214709cd07eab4eb5daa1264eb1452
