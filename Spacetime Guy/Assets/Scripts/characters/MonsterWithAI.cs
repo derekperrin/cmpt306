@@ -10,7 +10,7 @@ public class MonsterWithAI : Monster {
     private bool playerFound;
 
     private Vector3 currentTarget;
-
+    
     protected override void Start()
     {
         base.Start(); // Call the parent start method.

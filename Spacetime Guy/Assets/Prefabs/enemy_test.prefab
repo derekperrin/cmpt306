@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4165340503472066}
   - component: {fileID: 50095258205749380}
   - component: {fileID: 212283195462533564}
-  - component: {fileID: 114171003288856866}
+  - component: {fileID: 114639910413346548}
   - component: {fileID: 58413143051625426}
   m_Layer: 0
   m_Name: enemy_test
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 8.8
---- !u!114 &114171003288856866
+--- !u!114 &114639910413346548
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1166828797326084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b2cf03fc5bef64895f81323abb9873, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bddeb8cbe97a614483e3f74d7c79a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 2
@@ -99,9 +99,11 @@ MonoBehaviour:
   bulletXOffset: 0
   bulletYOffset: 0
   playerToKillName: Player
-  meleeDamage: 0
+  meleeDamage: 5
   pushForce: 100
   deathSound: {fileID: 8300000, guid: 3135d2dd5a27d92448eab1a22b3b2687, type: 3}
+  AI_playerSearchDistance: 10
+  AI_updateLength: 1
 --- !u!212 &212283195462533564
 SpriteRenderer:
   m_ObjectHideFlags: 1

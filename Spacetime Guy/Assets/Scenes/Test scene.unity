@@ -270,11 +270,11 @@ MonoBehaviour:
   player: {fileID: 1306214321584102, guid: 0788bacf40399ae48b1554a2795341bf, type: 2}
   basicBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
     type: 2}
-  basicFastEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
+  basicFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
     type: 2}
-  fireBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
+  fireBasicEnemy: {fileID: 1166828797326084, guid: 607892fcc186ef44980c6f80cce524f1,
     type: 2}
-  fireFastEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
+  fireFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
     type: 2}
   powerup: {fileID: 1125303040525798, guid: 3e9dc910abeea48449c4a157b036fdf0, type: 2}
   yBoardCorner: -20

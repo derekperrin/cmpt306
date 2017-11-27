@@ -95,8 +95,8 @@ MonoBehaviour:
   lives: 1
   bulletAsset: {fileID: 50208790502512722, guid: 93f343865d2f9d94e98a9f7b01c93169,
     type: 2}
-  shootRate: 0.5
-  bulletSpeed: 100
+  shootRate: 0
+  bulletSpeed: 0
   bulletXOffset: 0
   bulletYOffset: 0
 --- !u!212 &212694271095483376
