@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Laser : Weapon {
 
-    public Laser(GameObject player) : 
-        base(
+    public override void Initialize(GameObject player)
+    {
+        Initialize(
             player,                                      // character that is holding the Pistol
             (GameObject)Resources.Load("Prefab/Laser"),  // Bullet prefab
             0,                                           // Shoot rate
@@ -15,6 +16,6 @@ public class Laser : Weapon {
             100,                                         // Current ammo
             0f,                                          // bulletXOffset
             0f                                           // bulletYOffset
-        )
-    {}
+        );
+    }
 }

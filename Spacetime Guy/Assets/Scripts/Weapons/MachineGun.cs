@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MachineGun : Weapon {
 
-    public MachineGun(GameObject player) : 
-        base(
+    public override void Initialize(GameObject player)
+    {
+        Initialize(
             player,                                      // character that is holding the Machine Gun
             (GameObject)Resources.Load("Prefab/Bullet"), // Bullet prefab
             0.01f,                                       // Shoot rate
@@ -15,6 +16,6 @@ public class MachineGun : Weapon {
             10000,                                       // Current ammo
             0f,                                          // bulletXOffset
             0f                                           // bulletYOffset
-        )
-    { }
+        );
+    }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Pistol : Weapon {
 
-    public Pistol(GameObject player) : 
-        base(
+    public override void Initialize(GameObject player)
+    {
+        Initialize(
             player,                                      // character that is holding the Pistol
             (GameObject)Resources.Load("Prefab/Bullet"), // Bullet prefab
             1f,                                        // Shoot rate
@@ -15,6 +16,6 @@ public class Pistol : Weapon {
             100,                                         // Current ammo
             0f,                                          // bulletXOffset
             0f                                           // bulletYOffset
-        )
-    {}
+        );
+    }
 }

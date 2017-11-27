@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon {
+public abstract class Weapon {
     private GameObject character;
     private GameObject bulletAsset;
     protected float shootRate;
@@ -15,8 +15,7 @@ public class Weapon {
 
     protected float nextShootTime;
 
-
-    protected Weapon(GameObject character, GameObject bulletAsset, float shootRate, float bulletSpeed, float bulletDamage, int maxAmmo, int currentAmmo, float bulletXOffset, float bulletYOffset)
+    protected void Initialize(GameObject character, GameObject bulletAsset, float shootRate, float bulletSpeed, float bulletDamage, int maxAmmo, int currentAmmo, float bulletXOffset, float bulletYOffset)
     {
         this.character = character;
         this.bulletAsset = bulletAsset;
@@ -29,16 +28,22 @@ public class Weapon {
         this.bulletYOffset = bulletYOffset;
 
         this.nextShootTime = Time.time;
-        
-        
     }
 
+    public abstract void Initialize(GameObject player);
 
     public virtual void Fire(Vector2 direction)
     {
         if (Time.time <= nextShootTime && currentAmmo > 0) return;
-        
         nextShootTime = Time.time + shootRate;
+
+        // Make sure the weapon has been initialized before shooting it.
+        if (character == null)
+        {
+            Debug.LogError("Error: Cannot fire weapon if it is not initialized.");
+            return;
+        }
+
         currentAmmo -= 1;
 
         GameObject bullet = GameObject.Instantiate(bulletAsset, new Vector3(character.transform.position.x + bulletXOffset, character.transform.position.y + bulletYOffset, character.transform.position.z), Quaternion.identity);
