@@ -9,7 +9,7 @@ public class Pistol : Weapon {
         Initialize(
             player,                                      // character that is holding the Pistol
             (GameObject)Resources.Load("Prefab/Bullet"), // Bullet prefab
-            1f,                                        // Shoot rate
+            1f,                                          // Shoot rate
             100,                                         // Bullet speed
             10f,                                         // Bullet damage
             100,                                         // Max ammo

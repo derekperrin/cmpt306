@@ -123,4 +123,15 @@ public abstract class Character : MonoBehaviour
         FireController();
     }
 
+    /***
+     * Change the currentWeapon to newWeapon.
+     * Return the original value of currentWeapon.
+     */
+    public Weapon changeWeapon(Weapon newWeapon)
+    {
+        Weapon originalWeapon = currentWeapon;
+        currentWeapon = newWeapon;
+        return originalWeapon;
+    }
+
 }

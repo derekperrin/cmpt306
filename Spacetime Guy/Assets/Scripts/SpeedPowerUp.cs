@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class SpeedPowerUp : PowerUp {
 
-    private GameObject character;
     [SerializeField]
     private float speedMultiplier;
-    [SerializeField]
-    private float powerupLength;
 
     protected override void startPowerUp(Collider2D collider)
     {

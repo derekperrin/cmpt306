@@ -12,7 +12,8 @@ public class Player : Character {
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
         stunned = false;
-        currentWeapon = new MachineGun(this.gameObject);
+        currentWeapon = new Pistol();
+        currentWeapon.Initialize(this.gameObject);
     }
 
     protected override void Movement()
