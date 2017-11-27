@@ -12,6 +12,8 @@ public class Player : Character {
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
         stunned = false;
+        currentWeapon = new Pistol();
+        currentWeapon.Initialize(this.gameObject);
     }
 
     protected override void Movement()
@@ -30,20 +32,20 @@ public class Player : Character {
 
     protected override void FireController()
     {
-        if (Time.time >= shootCooldown)
+        if (Input.GetButton("FireX"))
         {
-            if (Input.GetButton("FireX"))
-            {
-                float shootDirX = Input.GetAxisRaw("FireX");
-                Vector2 xMoveVec = new Vector2((shootDirX) * bulletSpeed, 0);
-                Fire(xMoveVec);
-            }
-            else if (Input.GetButton("FireY"))
-            {
-                float shootDirY = Input.GetAxisRaw("FireY");
-                Vector2 yMoveVec = new Vector2(0, (shootDirY) * bulletSpeed);
-                Fire(yMoveVec);
-            }
+            float shootDirX = Input.GetAxisRaw("FireX");
+            Vector2 xMoveVec = new Vector2((shootDirX)/* * bulletSpeed*/, 0);
+            currentWeapon.Fire(xMoveVec);
+            //Fire(xMoveVec);
         }
+        else if (Input.GetButton("FireY"))
+        {
+            float shootDirY = Input.GetAxisRaw("FireY");
+            Vector2 yMoveVec = new Vector2(0, (shootDirY)/* * bulletSpeed*/);
+            currentWeapon.Fire(yMoveVec);
+            //Fire(yMoveVec);
+        }
+        
     }
 }

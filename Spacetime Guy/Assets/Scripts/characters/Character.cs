@@ -21,20 +21,7 @@ public abstract class Character : MonoBehaviour
     protected int lives;
     protected bool stunned;
 
-    // Bullet Variables
-    [SerializeField]
-    private Rigidbody2D bulletAsset;
-    [SerializeField]
-    protected float shootRate;
-    protected float shootCooldown;
-    [SerializeField]
-    protected float bulletSpeed;
-
-    //these are used to make it look like it's shot from whatever it needs to be shot
-    [SerializeField]
-    private float bulletXOffset;
-    [SerializeField]
-    private float bulletYOffset;
+    protected Weapon currentWeapon;
 
     /***
      * The user is required to initialize the characterRigidBody global variable
@@ -94,7 +81,7 @@ public abstract class Character : MonoBehaviour
      * When called, this method will Instantiate a bullet prefab and fire it in Vector2 direction
      * with speed bulletSpeed (global variable) combined with the velocity of the current velocity 
      * of the rigidbody that is in this GameObject.
-     */
+     */ /*
     protected void Fire(Vector2 direction)
     {
         Rigidbody2D bPrefab = Instantiate(bulletAsset, new Vector3(transform.position.x + bulletXOffset, transform.position.y + bulletYOffset, transform.position.z), Quaternion.identity) as Rigidbody2D;
@@ -108,7 +95,7 @@ public abstract class Character : MonoBehaviour
 
         bPrefab.GetComponent<Rigidbody2D>().AddForce(direction);
         shootCooldown = Time.time + shootRate;
-    }
+    } */
 
     // stun player when hit
     public void Stun(float stunTime)
@@ -134,6 +121,17 @@ public abstract class Character : MonoBehaviour
     protected virtual void Update()
     {
         FireController();
+    }
+
+    /***
+     * Change the currentWeapon to newWeapon.
+     * Return the original value of currentWeapon.
+     */
+    public Weapon changeWeapon(Weapon newWeapon)
+    {
+        Weapon originalWeapon = currentWeapon;
+        currentWeapon = newWeapon;
+        return originalWeapon;
     }
 
 }
