@@ -30,11 +30,15 @@ public abstract class Weapon {
         this.nextShootTime = Time.time;
     }
 
+    /***
+     * This method should call the other Initialize method with appropriate parameters based on the weapon.
+     * As an example, see Pistol.cs or MachineGun.cs.
+     */
     public abstract void Initialize(GameObject player);
 
     public virtual void Fire(Vector2 direction)
     {
-        if (Time.time <= nextShootTime && currentAmmo > 0) return;
+        if (Time.time <= nextShootTime || currentAmmo <= 0) return;
         nextShootTime = Time.time + shootRate;
 
         // Make sure the weapon has been initialized before shooting it.
