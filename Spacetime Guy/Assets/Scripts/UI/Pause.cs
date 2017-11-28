@@ -12,7 +12,7 @@ public class Pause : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        ResumeGame();
     }
 
     // Update is called once per frame
