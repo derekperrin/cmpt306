@@ -445,7 +445,9 @@ MonoBehaviour:
     type: 2}
   fireFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
     type: 2}
-  powerup: {fileID: 1125303040525798, guid: 24130142b476ec84cb26530f56b4df94, type: 2}
+  powerups:
+  - {fileID: 1125303040525798, guid: 24130142b476ec84cb26530f56b4df94, type: 2}
+  - {fileID: 1125303040525798, guid: 3e9dc910abeea48449c4a157b036fdf0, type: 2}
   yBoardCorner: -20
   xBoardCorner: -40
   minEnemies: 1

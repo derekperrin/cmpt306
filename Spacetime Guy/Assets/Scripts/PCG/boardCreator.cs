@@ -37,7 +37,7 @@ public class boardCreator : MonoBehaviour
     public GameObject fireFastEnemy;
 
     //types of powerups
-    public GameObject powerup;
+    public GameObject[] powerups;
 
     private Room[] rooms;
     private GameObject boardHolder;
@@ -355,7 +355,7 @@ public class boardCreator : MonoBehaviour
                 {
                     Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
-                    Instantiate(powerup, position, rotation);
+                    Instantiate(powerups[Random.Range(0, powerups.Length)], position, rotation);
 
                 }
             }
