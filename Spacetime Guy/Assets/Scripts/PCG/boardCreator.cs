@@ -317,9 +317,21 @@ public class boardCreator : MonoBehaviour
             fastEnemy = basicFastEnemy;
 
         }
-        Vector2 position1 = new Vector2(xBoardCorner + levelHeight/2,yBoardCorner+ levelWidth/2);
+        Vector2 position1 = new Vector2(xBoardCorner + levelHeight/4,yBoardCorner + levelWidth/4);
         Quaternion rotation1 = Quaternion.Euler(0, 0, 0);
         Instantiate(background, position1, rotation1);
+
+        Vector2 position2 = new Vector2(xBoardCorner + levelHeight / 4, yBoardCorner + levelWidth*3/4);
+        Quaternion rotation2 = Quaternion.Euler(0, 0, 0);
+        Instantiate(background, position2, rotation2);
+
+        Vector2 position3 = new Vector2(xBoardCorner + levelHeight*3/4, yBoardCorner + levelWidth / 4);
+        Quaternion rotation3 = Quaternion.Euler(0, 0, 0);
+        Instantiate(background, position3, rotation3);
+
+        Vector2 position4 = new Vector2(xBoardCorner + levelHeight*3/4, yBoardCorner + levelWidth *3/4);
+        Quaternion rotation4 = Quaternion.Euler(0, 0, 0);
+        Instantiate(background, position4, rotation4);
 
         //instantiate walls and players
         for (int j = 0; j < levelWidth; j++)
