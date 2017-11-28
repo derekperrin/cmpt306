@@ -5,6 +5,7 @@ using UnityEngine;
 
 
 public class Room {
+    public bool containsPortal =false; //true/false whether has a portal
     public int xPos; //x coordinate of lower left corner
     public int yPos; //y coordinate of lower left corner
     //Height and Width of Room 

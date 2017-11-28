@@ -8,6 +8,9 @@ public class boardCreator : MonoBehaviour
     //minimum size of leafs/also effects rooms
     public int minLeaf = 20;
 
+    //portal placed?
+    public bool portalPlaced = false;
+
     public List<Leafs> leafs;
     public List<Hallways> hallwayList;
     //level dimensions
@@ -20,6 +23,8 @@ public class boardCreator : MonoBehaviour
     //array of objects
     private GameObject[,] playfield;
     //GameObjects
+    //Portal
+    public GameObject portal;
     //types of backgrounds
     public GameObject basicBackground;
     public GameObject fireBackground;
@@ -96,6 +101,7 @@ public class boardCreator : MonoBehaviour
                 finalLeafList.Add(i);
             }
         }
+        placePortal(finalLeafList);
         //instantiate hallway list
         hallwayList = new List<Hallways>();
 
@@ -234,6 +240,13 @@ public class boardCreator : MonoBehaviour
             {
                 numPowerups = 1;
             }
+            if(i.room.containsPortal == true)
+            {
+                print("hello");
+                int x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
+                int y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
+                board[x, y] = 10;
+            }
             //find location of enemy type 1
             while (numEnemies1 != 0)
             {
@@ -335,6 +348,13 @@ public class boardCreator : MonoBehaviour
         {
             for (int k = 0; k < levelHeight; k++)
             {
+                if(board[j,k] == 10)
+                {
+                    print("placing portals");
+                    Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    Instantiate(portal, position, rotation);
+                }
 
                 if (board[j, k] == 2)
                 {
@@ -446,6 +466,15 @@ public class boardCreator : MonoBehaviour
         print(newString);
     }
 
+
+
+    void placePortal(List<Leafs> list)
+    {
+        System.Random randnum = new System.Random();
+        int roomIndex = randnum.Next(0, list.Count-1);
+        list.ToArray()[roomIndex].room.containsPortal = true;
+        portalPlaced = true;
+    }
 }
 
 

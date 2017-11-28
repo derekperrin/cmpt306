@@ -426,10 +426,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc823324c3539846a6c0a9b81ad9a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minLeaf: 8
+  minLeaf: 20
+  portalPlaced: 0
   levelHeight: 100
   levelWidth: 100
   levelType: 66
+  portal: {fileID: 1453675912209986, guid: 1877b13b80c36bd4c837dd4aca497f47, type: 2}
   basicBackground: {fileID: 1818529289694132, guid: 8b4bd5a29acafef4db50007e4e71ee7c,
     type: 2}
   fireBackground: {fileID: 1601836717085094, guid: ed4acec4f9211a8429608d82ff58efb1,
