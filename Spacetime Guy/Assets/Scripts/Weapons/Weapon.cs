@@ -51,8 +51,8 @@ public abstract class Weapon {
         currentAmmo -= 1;
 
         GameObject bullet = GameObject.Instantiate(bulletAsset, new Vector3(character.transform.position.x + bulletXOffset, character.transform.position.y + bulletYOffset, character.transform.position.z), Quaternion.identity);
-        bullet.GetComponent<Bullet>().setBulletDamage(bulletDamage);
-        bullet.GetComponent<Bullet>().from = character.tag;
+        bullet.GetComponent<Projectile>().setBulletDamage(bulletDamage);
+        bullet.GetComponent<Projectile>().from = character.tag;
 
         //get parent's momentum when firing.
         Vector2 playerVelocity = (character.GetComponent<Rigidbody2D>().velocity);

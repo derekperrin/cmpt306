@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212181758081943374}
   - component: {fileID: 58871943038787456}
   - component: {fileID: 50208790502512722}
-  - component: {fileID: 114857380131666242}
+  - component: {fileID: 114010115043667228}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0.00000023841858, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114857380131666242
+--- !u!114 &114010115043667228
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1114151908804648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc19680ec3b35a5418d043931ad4d0d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 424dd8470bd1fe44d987d33dbd9067a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   from: 
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c2aa5640686ee394eab6b4b86cada6d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa923b4a04b6fd04286acc19fceb6436, type: 3}
   m_Color: {r: 0.6838235, g: 0.12067473, b: 0.12067473, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
-    
-    private float bulletDamage; 
-    public string from; // game object that fired bullet
+public class Bullet : Projectile {
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == this.from || collision.gameObject.GetComponent<Bullet>() != null)
             return;
@@ -19,10 +16,4 @@ public class Bullet : MonoBehaviour {
         Destroy(this.gameObject);
         
     }
-
-    public void setBulletDamage(float bulletDamage)
-    {
-        this.bulletDamage = bulletDamage;
-    }
-
 }
