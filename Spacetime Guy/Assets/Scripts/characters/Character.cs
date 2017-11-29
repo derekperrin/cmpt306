@@ -43,7 +43,7 @@ public abstract class Character : MonoBehaviour
     {
         if (healthMax == 0) // if immortal
             return;
-        healthCurrent = healthCurrent - damage;
+        healthCurrent = healthCurrent - damage > healthMax ? healthMax : healthCurrent - damage;
         if (healthCurrent <= 0)
         {
             lives = lives - 1;
