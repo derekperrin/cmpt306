@@ -449,7 +449,9 @@ MonoBehaviour:
     type: 2}
   powerups:
   - {fileID: 1125303040525798, guid: 24130142b476ec84cb26530f56b4df94, type: 2}
+  - {fileID: 1125303040525798, guid: f84ac4fcb233eeb43b3f1782269846c0, type: 2}
   - {fileID: 1125303040525798, guid: 3e9dc910abeea48449c4a157b036fdf0, type: 2}
+  - {fileID: 1125303040525798, guid: e059c51f8da05514484404b58cf0bf1d, type: 2}
   yBoardCorner: -20
   xBoardCorner: -40
   minEnemies: 1

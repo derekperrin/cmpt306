@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4090980813069978}
   - component: {fileID: 212086338335105264}
+  - component: {fileID: 114663818647399952}
   - component: {fileID: 58411002654405196}
-  - component: {fileID: 114617380704513206}
   m_Layer: 0
-  m_Name: MachineGunPowerup
+  m_Name: HealthBoost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &114617380704513206
+--- !u!114 &114663818647399952
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,10 +65,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1125303040525798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cfb1435d9227a245bf350cafbf428bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fb760e57914e8a4d93b1ee4b3b7e478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupLength: 20
+  powerupLength: 10
 --- !u!212 &212086338335105264
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: 1267934213f99b840874f2abb7c9285c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22845f1ef10016b47913ced0fa024b38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

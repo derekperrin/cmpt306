@@ -36,6 +36,13 @@ public abstract class Weapon {
      */
     public abstract void Initialize(GameObject player);
 
+    /***
+     * Fire a bullet in Vector2 direction.
+     * This method is designed to be called by the FireController method.
+     * When called, this method will Instantiate a bullet prefab and fire it in Vector2 direction
+     * with speed bulletSpeed (global variable) combined with the velocity of the current velocity 
+     * of the rigidbody that is in this GameObject.
+     */
     public virtual void Fire(Vector2 direction)
     {
         if (Time.time <= nextShootTime || currentAmmo <= 0) return;

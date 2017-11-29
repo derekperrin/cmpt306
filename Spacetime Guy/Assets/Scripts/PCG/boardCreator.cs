@@ -42,7 +42,7 @@ public class boardCreator : MonoBehaviour
     public GameObject fireFastEnemy;
 
     //types of powerups
-    public GameObject[] powerups;
+    public GameObject[] powerups; 
 
     private Room[] rooms;
     private GameObject boardHolder;
