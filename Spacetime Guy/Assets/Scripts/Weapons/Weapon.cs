@@ -30,11 +30,15 @@ public abstract class Weapon {
         this.nextShootTime = Time.time;
     }
 
+    /***
+     * This method should call the other Initialize method with appropriate parameters based on the weapon.
+     * As an example, see Pistol.cs or MachineGun.cs.
+     */
     public abstract void Initialize(GameObject player);
 
     public virtual void Fire(Vector2 direction)
     {
-        if (Time.time <= nextShootTime && currentAmmo > 0) return;
+        if (Time.time <= nextShootTime || currentAmmo <= 0) return;
         nextShootTime = Time.time + shootRate;
 
         // Make sure the weapon has been initialized before shooting it.
@@ -47,8 +51,8 @@ public abstract class Weapon {
         currentAmmo -= 1;
 
         GameObject bullet = GameObject.Instantiate(bulletAsset, new Vector3(character.transform.position.x + bulletXOffset, character.transform.position.y + bulletYOffset, character.transform.position.z), Quaternion.identity);
-        bullet.GetComponent<Bullet>().setBulletDamage(bulletDamage);
-        bullet.GetComponent<Bullet>().from = character.tag;
+        bullet.GetComponent<Projectile>().setBulletDamage(bulletDamage);
+        bullet.GetComponent<Projectile>().from = character.tag;
 
         //get parent's momentum when firing.
         Vector2 playerVelocity = (character.GetComponent<Rigidbody2D>().velocity);
