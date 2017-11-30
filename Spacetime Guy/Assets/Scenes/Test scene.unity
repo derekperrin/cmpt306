@@ -436,33 +436,42 @@ MonoBehaviour:
     type: 2}
   fireBackground: {fileID: 1601836717085094, guid: ed4acec4f9211a8429608d82ff58efb1,
     type: 2}
-  jungleBackground: {fileID: 0}
-  iceBackground: {fileID: 0}
-  spaceBackground: {fileID: 0}
+  jungleBackground: {fileID: 1457852480808416, guid: b35b8ddc1fc320d45a96b6568580120b,
+    type: 2}
+  iceBackground: {fileID: 1980265265479114, guid: 1a2d1d611c1f1b646801f80587404f36,
+    type: 2}
+  spaceBackground: {fileID: 1443091832339838, guid: 8cded785e9cec0742b4d5456a1bced3e,
+    type: 2}
   basicWall: {fileID: 1538844572990876, guid: 8b375e35647040e47885018d1971bce5, type: 2}
   fireWall: {fileID: 1817764276597976, guid: 5a1561e8bbac7e54cba3cdca22c69399, type: 2}
-  jungleWall: {fileID: 0}
-  iceWall: {fileID: 0}
-  spaceWall: {fileID: 0}
+  jungleWall: {fileID: 1577760897219412, guid: 82aba761b02b3c548b54800d58cbe105, type: 2}
+  iceWall: {fileID: 1798103588336126, guid: cf1d92239ee57dd4c9105fcc858e89b0, type: 2}
+  spaceWall: {fileID: 1060530225836906, guid: 56b47936f59549f4982c9500a992e800, type: 2}
   player: {fileID: 1306214321584102, guid: 0788bacf40399ae48b1554a2795341bf, type: 2}
   basicBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
     type: 2}
   basicFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
     type: 2}
   basicAdvancedEnemy: {fileID: 0}
-  fireBasicEnemy: {fileID: 1166828797326084, guid: 607892fcc186ef44980c6f80cce524f1,
+  fireBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
     type: 2}
   fireFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
     type: 2}
   fireAdvancedEnemy: {fileID: 0}
-  jungleBasicEnemy: {fileID: 0}
-  jungleFastEnemy: {fileID: 0}
+  jungleBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
+    type: 2}
+  jungleFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
+    type: 2}
   jungleAdvancedEnemy: {fileID: 0}
-  iceBasicEnemy: {fileID: 0}
-  iceFastEnemy: {fileID: 0}
+  iceBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
+    type: 2}
+  iceFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
+    type: 2}
   iceAdvancedEnemy: {fileID: 0}
-  spaceBasicEnemy: {fileID: 0}
-  spaceFastEnemy: {fileID: 0}
+  spaceBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
+    type: 2}
+  spaceFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
+    type: 2}
   spaceAdvancedEnemy: {fileID: 0}
   powerups:
   - {fileID: 1125303040525798, guid: 24130142b476ec84cb26530f56b4df94, type: 2}

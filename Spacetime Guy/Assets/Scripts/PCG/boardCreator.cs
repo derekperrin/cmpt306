@@ -444,15 +444,15 @@ public class boardCreator : MonoBehaviour
         //generates the level type from the available pool
         int temp = randnum.Next(0,100);
         //basic level type
-        if(temp >= 50) { levelType = 'B'; }
+        if(temp >= 0 && temp >= 20) { levelType = 'B'; }
         //fire level type
-        if (temp <= 50) { levelType = 'F'; }
+        if (temp <= 40 && temp > 20) { levelType = 'F'; }
         //ice level type
-        if (temp == 2) { levelType = 'I'; }
+        if (temp <= 60 && temp > 40) { levelType = 'I'; }
         //jungle level type
-        if (temp == 3) { levelType = 'J'; }
+        if (temp <= 80 && temp > 60) { levelType = 'J'; }
         //space station level type
-        if (temp == 4) { levelType = 'S'; }
+        if (temp <= 100 && temp > 80) { levelType = 'S'; }
     }
 
     //cretes rooms
