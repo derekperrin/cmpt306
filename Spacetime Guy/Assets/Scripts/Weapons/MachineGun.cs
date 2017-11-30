@@ -19,6 +19,5 @@ public class MachineGun : Weapon {
             0f,                                          // bulletXOffset
             0f                                           // bulletYOffset
         );
-        name = "Machine Gun";
     }
 }
