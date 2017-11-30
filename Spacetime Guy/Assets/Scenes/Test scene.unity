@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3402cfba27c2e494cb77c6018362a524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 0
+  playerHealth: 100
   levelsCompleted: 0
 --- !u!4 &512513463
 Transform:
