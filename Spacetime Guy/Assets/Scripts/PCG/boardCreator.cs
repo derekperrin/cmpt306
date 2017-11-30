@@ -28,18 +28,36 @@ public class boardCreator : MonoBehaviour
     //types of backgrounds
     public GameObject basicBackground;
     public GameObject fireBackground;
+    public GameObject iceBackground;
+    public GameObject jungleBackground;
+    public GameObject spaceBackground;
+    
     //types of walls
     public GameObject basicWall;
     public GameObject fireWall;
+    public GameObject jungleWall;
+    public GameObject iceWall;
+    public GameObject spaceWall;
 
     //player object
     public GameObject player;
 
     //types of enemmies
+    public GameObject basicOtherEnemy;
     public GameObject basicBasicEnemy;
     public GameObject basicFastEnemy;
+    public GameObject fireOtherEnemy;
     public GameObject fireBasicEnemy;
     public GameObject fireFastEnemy;
+    public GameObject iceOtherEnemy;
+    public GameObject iceBasicEnemy;
+    public GameObject iceFastEnemy;
+    public GameObject jungleOtherEnemy;
+    public GameObject jungleBasicEnemy;
+    public GameObject jungleFastEnemy;
+    public GameObject spaceOtherEnemy;
+    public GameObject spaceBasicEnemy;
+    public GameObject spaceFastEnemy;
 
     //types of powerups
     public GameObject[] powerups;
@@ -105,11 +123,11 @@ public class boardCreator : MonoBehaviour
         //instantiate hallway list
         hallwayList = new List<Hallways>();
 
-
+        
         //foreach (Leafs i in childLeafs)
         for (int i = 0; i < (finalLeafList.Count - 1); i++)
         {
-            if (i == 1)
+            if (i == 0)
             {
                 finalLeafList[i].room.startRoom = true;
             }
