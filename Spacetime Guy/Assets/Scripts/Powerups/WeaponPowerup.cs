@@ -7,6 +7,15 @@ public abstract class WeaponPowerup<WeaponSubType> : PowerUp where WeaponSubType
     private static bool hasWeaponPowerup = false;
 
     private Weapon originalWeapon;
+    private Weapon powerupWeapon;
+
+    private void checkAmmo()
+    {
+        if (powerupWeapon.currentAmmo <= 0)
+        {
+            startPowerDown();
+        }
+    }
 
     protected override void startPowerUp(Collider2D collider)
     {
@@ -15,14 +24,15 @@ public abstract class WeaponPowerup<WeaponSubType> : PowerUp where WeaponSubType
         hasWeaponPowerup = true;
         Debug.Log("Changing weapon.");
         character = GameObject.FindGameObjectWithTag("Player");
-        Weapon newWeapon = new WeaponSubType();
-        newWeapon.Initialize(character);
-        originalWeapon = character.GetComponent<Character>().changeWeapon(newWeapon);
+        powerupWeapon = new WeaponSubType();
+        powerupWeapon.Initialize(character);
+        originalWeapon = character.GetComponent<Character>().changeWeapon(powerupWeapon);
 
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
 
         Invoke("startPowerDown", powerupLength);
+        InvokeRepeating("checkAmmo", 0.5f, 0.5f);
     }
 
     protected override void startPowerDown()
