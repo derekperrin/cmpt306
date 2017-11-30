@@ -28,9 +28,16 @@ public class boardCreator : MonoBehaviour
     //types of backgrounds
     public GameObject basicBackground;
     public GameObject fireBackground;
+    public GameObject jungleBackground;
+    public GameObject iceBackground;
+    public GameObject spaceBackground;
     //types of walls
     public GameObject basicWall;
     public GameObject fireWall;
+    public GameObject jungleWall;
+    public GameObject iceWall;
+    public GameObject spaceWall;
+   
 
     //player object
     public GameObject player;
@@ -38,8 +45,20 @@ public class boardCreator : MonoBehaviour
     //types of enemmies
     public GameObject basicBasicEnemy;
     public GameObject basicFastEnemy;
+    public GameObject basicAdvancedEnemy;
     public GameObject fireBasicEnemy;
     public GameObject fireFastEnemy;
+    public GameObject fireAdvancedEnemy;
+    public GameObject jungleBasicEnemy;
+    public GameObject jungleFastEnemy;
+    public GameObject jungleAdvancedEnemy;
+    public GameObject iceBasicEnemy;
+    public GameObject iceFastEnemy;
+    public GameObject iceAdvancedEnemy;
+    public GameObject spaceBasicEnemy;
+    public GameObject spaceFastEnemy;
+    public GameObject spaceAdvancedEnemy;
+
 
     //types of powerups
     public GameObject[] powerups; 
@@ -109,7 +128,7 @@ public class boardCreator : MonoBehaviour
         //foreach (Leafs i in childLeafs)
         for (int i = 0; i < (finalLeafList.Count - 1); i++)
         {
-            if (i == 1)
+            if (i == 0)
             {
                 finalLeafList[i].room.startRoom = true;
             }
@@ -315,6 +334,30 @@ public class boardCreator : MonoBehaviour
             wall = basicWall;
             basicEnemy = basicBasicEnemy;
             fastEnemy = basicFastEnemy;
+
+        }
+        if (levelType == 'J')
+        {
+            background = jungleBackground;
+            wall = jungleWall;
+            basicEnemy = jungleBasicEnemy;
+            fastEnemy = jungleFastEnemy;
+
+        }
+        if (levelType == 'S')
+        {
+            background = spaceBackground;
+            wall = spaceWall;
+            basicEnemy = spaceBasicEnemy;
+            fastEnemy = spaceFastEnemy;
+
+        }
+        if (levelType == 'I')
+        {
+            background = iceBackground;
+            wall = iceWall;
+            basicEnemy = iceBasicEnemy;
+            fastEnemy = iceFastEnemy;
 
         }
         Vector2 position1 = new Vector2(xBoardCorner + levelHeight/4,yBoardCorner + levelWidth/4);
