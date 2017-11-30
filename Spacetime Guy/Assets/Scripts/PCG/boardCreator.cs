@@ -450,9 +450,9 @@ public class boardCreator : MonoBehaviour
         //ice level type
         if (temp <= 60 && temp > 40) { levelType = 'I'; }
         //jungle level type
-        if (temp <= 80 && temp > 60) { levelType = 'J'; }
+        if (temp <= 100 && temp > 60) { levelType = 'J'; }
         //space station level type
-        if (temp <= 100 && temp > 80) { levelType = 'S'; }
+        //if (temp <= 100 && temp > 80) { levelType = 'S'; }
     }
 
     //cretes rooms
