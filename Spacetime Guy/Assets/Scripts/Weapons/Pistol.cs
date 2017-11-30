@@ -7,6 +7,7 @@ public class Pistol : Weapon {
     public override void Initialize(GameObject player)
     {
         Initialize(
+           "Pistol",
             player,                                      // character that is holding the Pistol
             (GameObject)Resources.Load("Prefab/Bullet"), // Bullet prefab
             1f,                                          // Shoot rate

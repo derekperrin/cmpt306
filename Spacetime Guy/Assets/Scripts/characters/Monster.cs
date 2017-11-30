@@ -20,11 +20,14 @@ public class Monster : Character {
     [SerializeField]
     private AudioClip deathSound;
 
+    public GameObject temphealth;
+
     protected override void Start()
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
         soundPlayer = GameObject.FindGameObjectWithTag("SoundPlayer").GetComponent<AudioSource>();
-	}
+        temphealth = GameObject.FindGameObjectWithTag("HealthUI");
+    }
     protected override void Update()
     {
         base.Update(); // call the parent's update method.
@@ -68,7 +71,9 @@ public class Monster : Character {
         if (collision.gameObject.tag == "Player")
         {
             // Debug.Log("Monster has struck player");
+           
             playerToKill.SendMessage("TakeDamage", meleeDamage);
+            temphealth.SendMessage("UpdateUI");
             playerToKill.GetComponent<Player>().Stun(1.0f);
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(this.characterRigidBody.velocity.normalized * pushForce);
             characterRigidBody.velocity = new Vector2(0f, 0f);

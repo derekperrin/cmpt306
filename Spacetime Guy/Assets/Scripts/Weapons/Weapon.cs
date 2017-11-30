@@ -8,15 +8,18 @@ public abstract class Weapon {
     protected float shootRate;
     protected float bulletSpeed;
     protected float bulletDamage;
-    protected int maxAmmo;
-    protected int currentAmmo;
+    public int maxAmmo;
+    public int currentAmmo;
     private float bulletXOffset;
     private float bulletYOffset;
+    // name of weapon, useful for UI purposes... and that's pretty much it.
+    public string name;
 
     protected float nextShootTime;
 
-    protected void Initialize(GameObject character, GameObject bulletAsset, float shootRate, float bulletSpeed, float bulletDamage, int maxAmmo, int currentAmmo, float bulletXOffset, float bulletYOffset)
+    protected void Initialize(string name, GameObject character, GameObject bulletAsset, float shootRate, float bulletSpeed, float bulletDamage, int maxAmmo, int currentAmmo, float bulletXOffset, float bulletYOffset)
     {
+        this.name = name;
         this.character = character;
         this.bulletAsset = bulletAsset;
         this.shootRate = shootRate;

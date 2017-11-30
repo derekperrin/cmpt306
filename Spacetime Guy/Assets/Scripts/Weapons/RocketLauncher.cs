@@ -7,6 +7,7 @@ public class RocketLauncher : Weapon
     public override void Initialize(GameObject player)
     {
         Initialize(
+            "Rocket Launcher",
             player,                                      // character that is holding the Machine Gun
             (GameObject)Resources.Load("Prefab/Rocket"), // Rocket prefab
             1.5f,                                        // Shoot rate

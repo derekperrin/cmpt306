@@ -14,14 +14,15 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     public float characterSpeed;
     [SerializeField]
-    protected float healthCurrent;
+    public float healthCurrent;
     [SerializeField]
-    protected float healthMax; // set to 0 to be immortal
+    public float healthMax; // set to 0 to be immortal
     [SerializeField]
     protected int lives;
     protected bool stunned;
 
-    protected Weapon currentWeapon;
+    public Weapon currentWeapon;
+    
 
     /***
      * The user is required to initialize the characterRigidBody global variable

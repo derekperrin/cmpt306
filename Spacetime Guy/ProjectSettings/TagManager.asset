@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Wall
   - SoundPlayer
+  - HealthUI
+  - WeaponUI
+  - Global
   layers:
   - Default
   - TransparentFX
