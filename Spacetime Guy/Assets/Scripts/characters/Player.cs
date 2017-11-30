@@ -16,6 +16,8 @@ public class Player : Character {
     // player holds a log of it's levels beaten so it can save and get from globalvar for score purposes.
     public int levelsBeaten;
 
+    public GameObject lighting;
+
     protected override void Start()
     {
         
@@ -35,7 +37,9 @@ public class Player : Character {
         HealthUI.SendMessage("UpdateUI");
         WeaponUI = GameObject.FindGameObjectWithTag("WeaponUI");
         WeaponUI.SendMessage("UpdateUI");
-        
+
+        var temp = Instantiate(lighting, new Vector2(characterRigidBody.position.x, characterRigidBody.position.y), new Quaternion(0,0,0,0));
+        temp.transform.parent = transform;
     }
 
     protected override void Movement()
