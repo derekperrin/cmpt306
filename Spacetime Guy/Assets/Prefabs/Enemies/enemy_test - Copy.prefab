@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 212283195462533564}
   - component: {fileID: 114396705411052228}
   - component: {fileID: 58413143051625426}
-  - component: {fileID: 111124287638813194}
   - component: {fileID: 95671404035472012}
   m_Layer: 8
   m_Name: enemy_test - Copy
@@ -98,20 +97,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &111124287638813194
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166828797326084}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 7dec247461ebe9941a66d65ee2b10637, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114118239909319748
 MonoBehaviour:
   m_ObjectHideFlags: 1

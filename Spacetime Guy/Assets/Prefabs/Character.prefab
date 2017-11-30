@@ -93,6 +93,8 @@ MonoBehaviour:
   healthCurrent: 100
   healthMax: 100
   lives: 1
+  levelsBeaten: 0
+  lighting: {fileID: 1252942160785144, guid: ffa076e1c6f4a6c49bce4fa821964b51, type: 2}
 --- !u!212 &212694271095483376
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -106,7 +108,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 132f31cc611f91f4ba7088d83c2796c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
