@@ -12,7 +12,9 @@ public class EndPortal : MonoBehaviour {
         // Used mainly for when the monster crashes into the player
         if (collision.gameObject.tag == "Player")
         {
-            GlobalControl.Instance.SendMessage("getPlayerState");
+            GlobalControl.Instance.SendMessage("GetPlayerState");
+            Debug.Log("health:" + GlobalControl.Instance.playerHealth);
+            GlobalControl.Instance.SendMessage("IncrementLevelCompleted");
             int scene = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         }
