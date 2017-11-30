@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc823324c3539846a6c0a9b81ad9a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minLeaf: 20
+  minLeaf: 15
   portalPlaced: 0
   levelHeight: 100
   levelWidth: 100
@@ -436,17 +436,34 @@ MonoBehaviour:
     type: 2}
   fireBackground: {fileID: 1601836717085094, guid: ed4acec4f9211a8429608d82ff58efb1,
     type: 2}
+  jungleBackground: {fileID: 0}
+  iceBackground: {fileID: 0}
+  spaceBackground: {fileID: 0}
   basicWall: {fileID: 1538844572990876, guid: 8b375e35647040e47885018d1971bce5, type: 2}
   fireWall: {fileID: 1817764276597976, guid: 5a1561e8bbac7e54cba3cdca22c69399, type: 2}
+  jungleWall: {fileID: 0}
+  iceWall: {fileID: 0}
+  spaceWall: {fileID: 0}
   player: {fileID: 1306214321584102, guid: 0788bacf40399ae48b1554a2795341bf, type: 2}
   basicBasicEnemy: {fileID: 1166828797326084, guid: 83b94a409c7d77841ac6c149faa360b8,
     type: 2}
   basicFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
     type: 2}
+  basicAdvancedEnemy: {fileID: 0}
   fireBasicEnemy: {fileID: 1166828797326084, guid: 607892fcc186ef44980c6f80cce524f1,
     type: 2}
   fireFastEnemy: {fileID: 1166828797326084, guid: 65748e68ab8bdbf47b08294c5724bddf,
     type: 2}
+  fireAdvancedEnemy: {fileID: 0}
+  jungleBasicEnemy: {fileID: 0}
+  jungleFastEnemy: {fileID: 0}
+  jungleAdvancedEnemy: {fileID: 0}
+  iceBasicEnemy: {fileID: 0}
+  iceFastEnemy: {fileID: 0}
+  iceAdvancedEnemy: {fileID: 0}
+  spaceBasicEnemy: {fileID: 0}
+  spaceFastEnemy: {fileID: 0}
+  spaceAdvancedEnemy: {fileID: 0}
   powerups:
   - {fileID: 1125303040525798, guid: 24130142b476ec84cb26530f56b4df94, type: 2}
   - {fileID: 1125303040525798, guid: f84ac4fcb233eeb43b3f1782269846c0, type: 2}
