@@ -8,6 +8,9 @@ public class boardCreator : MonoBehaviour
     //minimum size of leafs/also effects rooms
     public int minLeaf = 20;
 
+    //portal placed?
+    public bool portalPlaced = false;
+
     public List<Leafs> leafs;
     public List<Hallways> hallwayList;
     //level dimensions
@@ -20,6 +23,8 @@ public class boardCreator : MonoBehaviour
     //array of objects
     private GameObject[,] playfield;
     //GameObjects
+    //Portal
+    public GameObject portal;
     //types of backgrounds
     public GameObject basicBackground;
     public GameObject fireBackground;
@@ -37,7 +42,7 @@ public class boardCreator : MonoBehaviour
     public GameObject fireFastEnemy;
 
     //types of powerups
-    public GameObject powerup;
+    public GameObject[] powerups; 
 
     private Room[] rooms;
     private GameObject boardHolder;
@@ -96,6 +101,7 @@ public class boardCreator : MonoBehaviour
                 finalLeafList.Add(i);
             }
         }
+        placePortal(finalLeafList);
         //instantiate hallway list
         hallwayList = new List<Hallways>();
 
@@ -234,6 +240,13 @@ public class boardCreator : MonoBehaviour
             {
                 numPowerups = 1;
             }
+            if(i.room.containsPortal == true)
+            {
+                print("hello");
+                int x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
+                int y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
+                board[x, y] = 10;
+            }
             //find location of enemy type 1
             while (numEnemies1 != 0)
             {
@@ -304,9 +317,21 @@ public class boardCreator : MonoBehaviour
             fastEnemy = basicFastEnemy;
 
         }
-        Vector2 position1 = new Vector2(xBoardCorner + levelHeight/2,yBoardCorner+ levelWidth/2);
+        Vector2 position1 = new Vector2(xBoardCorner + levelHeight/4,yBoardCorner + levelWidth/4);
         Quaternion rotation1 = Quaternion.Euler(0, 0, 0);
         Instantiate(background, position1, rotation1);
+
+        Vector2 position2 = new Vector2(xBoardCorner + levelHeight / 4, yBoardCorner + levelWidth*3/4);
+        Quaternion rotation2 = Quaternion.Euler(0, 0, 0);
+        Instantiate(background, position2, rotation2);
+
+        Vector2 position3 = new Vector2(xBoardCorner + levelHeight*3/4, yBoardCorner + levelWidth / 4);
+        Quaternion rotation3 = Quaternion.Euler(0, 0, 0);
+        Instantiate(background, position3, rotation3);
+
+        Vector2 position4 = new Vector2(xBoardCorner + levelHeight*3/4, yBoardCorner + levelWidth *3/4);
+        Quaternion rotation4 = Quaternion.Euler(0, 0, 0);
+        Instantiate(background, position4, rotation4);
 
         //instantiate walls and players
         for (int j = 0; j < levelWidth; j++)
@@ -335,6 +360,13 @@ public class boardCreator : MonoBehaviour
         {
             for (int k = 0; k < levelHeight; k++)
             {
+                if(board[j,k] == 10)
+                {
+                    print("placing portals");
+                    Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    Instantiate(portal, position, rotation);
+                }
 
                 if (board[j, k] == 2)
                 {
@@ -355,7 +387,7 @@ public class boardCreator : MonoBehaviour
                 {
                     Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
-                    Instantiate(powerup, position, rotation);
+                    Instantiate(powerups[Random.Range(0, powerups.Length)], position, rotation);
 
                 }
             }
@@ -446,6 +478,15 @@ public class boardCreator : MonoBehaviour
         print(newString);
     }
 
+
+
+    void placePortal(List<Leafs> list)
+    {
+        System.Random randnum = new System.Random();
+        int roomIndex = randnum.Next(0, list.Count-1);
+        list.ToArray()[roomIndex].room.containsPortal = true;
+        portalPlaced = true;
+    }
 }
 
 

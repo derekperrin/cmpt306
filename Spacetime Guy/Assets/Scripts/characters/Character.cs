@@ -14,14 +14,15 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     public float characterSpeed;
     [SerializeField]
-    protected float healthCurrent;
+    public float healthCurrent;
     [SerializeField]
-    protected float healthMax; // set to 0 to be immortal
+    public float healthMax; // set to 0 to be immortal
     [SerializeField]
     protected int lives;
     protected bool stunned;
 
-    protected Weapon currentWeapon;
+    public Weapon currentWeapon;
+    
 
     /***
      * The user is required to initialize the characterRigidBody global variable
@@ -43,7 +44,7 @@ public abstract class Character : MonoBehaviour
     {
         if (healthMax == 0) // if immortal
             return;
-        healthCurrent = healthCurrent - damage;
+        healthCurrent = healthCurrent - damage > healthMax ? healthMax : healthCurrent - damage;
         if (healthCurrent <= 0)
         {
             lives = lives - 1;
@@ -74,28 +75,6 @@ public abstract class Character : MonoBehaviour
      * this method blank.
      */
     protected abstract void FireController();
-
-    /***
-     * Fire a bullet in Vector2 direction.
-     * This method is designed to be called by the FireController method.
-     * When called, this method will Instantiate a bullet prefab and fire it in Vector2 direction
-     * with speed bulletSpeed (global variable) combined with the velocity of the current velocity 
-     * of the rigidbody that is in this GameObject.
-     */ /*
-    protected void Fire(Vector2 direction)
-    {
-        Rigidbody2D bPrefab = Instantiate(bulletAsset, new Vector3(transform.position.x + bulletXOffset, transform.position.y + bulletYOffset, transform.position.z), Quaternion.identity) as Rigidbody2D;
-        bPrefab.GetComponent<Bullet>().from = gameObject.tag;
-        //get parent's momentum when firing.
-        Vector2 playerVelocity = (this.GetComponent<Rigidbody2D>().velocity);
-        int velocityMultiplier = 10;
-
-
-        direction = new Vector2(direction.x == 0 ? playerVelocity.x * velocityMultiplier : direction.x, direction.y == 0 ? playerVelocity.y * velocityMultiplier : direction.y);
-
-        bPrefab.GetComponent<Rigidbody2D>().AddForce(direction);
-        shootCooldown = Time.time + shootRate;
-    } */
 
     // stun player when hit
     public void Stun(float stunTime)
