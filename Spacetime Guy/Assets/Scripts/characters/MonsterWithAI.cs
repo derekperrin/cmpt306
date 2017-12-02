@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterWithAI : Monster {
-    [SerializeField] private float AI_playerSearchDistance;
     private Vector3 spawnLocation;
     [SerializeField] private float AI_updateLength;
     private float nextUpdate;
@@ -33,7 +32,9 @@ public class MonsterWithAI : Monster {
 	
     private void UpdateTarget()
     {
-        if (Mathf.Max(Mathf.Abs(this.transform.position.x - playerToKill.transform.position.x), Mathf.Abs(this.transform.position.y - playerToKill.transform.position.y)) <= AI_playerSearchDistance)
+        int layerMask = ~((1 << 8) | (1 << 2));   // collide against everything except layer 8 (Enemy) and layer 2 (Ignore Raycast)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerToKill.transform.position - transform.position).normalized, Mathf.Infinity, layerMask);
+        if (hit.collider.gameObject.CompareTag("Player"))
         {
             currentTarget = playerToKill.transform.position;
             playerFound = true;

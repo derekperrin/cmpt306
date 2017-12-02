@@ -2,18 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /***
  * GameObject requirements for this script:
  *   - The Game Object that this script is placed in must have a rigidbody2d component.
  */
 public class Player : Character {
+    //the UI Game Object dedicated to show the player's hp.
+    protected GameObject HealthUI;
+
+    //the UI Game Object dedicated to show player's weapon ammo
+    protected GameObject WeaponUI;
+    // player holds a log of it's levels beaten so it can save and get from globalvar for score purposes.
+    public int levelsBeaten;
 
     protected override void Start()
     {
+        
         characterRigidBody = GetComponent<Rigidbody2D>();
         stunned = false;
-        currentWeapon = new Pistol();
+        if (GlobalControl.Instance.playerWeapon == null)
+        {
+            currentWeapon = new Pistol();
+        } else
+        {
+            currentWeapon = GlobalControl.Instance.playerWeapon;
+        }
+        healthCurrent = GlobalControl.Instance.playerHealth;
+        levelsBeaten = GlobalControl.Instance.levelsCompleted;
         currentWeapon.Initialize(this.gameObject);
+        HealthUI = GameObject.FindGameObjectWithTag("HealthUI");
+        HealthUI.SendMessage("UpdateUI");
+        WeaponUI = GameObject.FindGameObjectWithTag("WeaponUI");
+        WeaponUI.SendMessage("UpdateUI");
+        
     }
 
     protected override void Movement()
@@ -39,6 +61,7 @@ public class Player : Character {
             float shootDirX = Input.GetAxisRaw("FireX");
             Vector2 xMoveVec = new Vector2((shootDirX)/* * bulletSpeed*/, 0);
             currentWeapon.Fire(xMoveVec);
+            WeaponUI.SendMessage("UpdateUI");
             //Fire(xMoveVec);
         }
         else if (Input.GetButton("FireY"))
@@ -46,6 +69,7 @@ public class Player : Character {
             float shootDirY = Input.GetAxisRaw("FireY");
             Vector2 yMoveVec = new Vector2(0, (shootDirY)/* * bulletSpeed*/);
             currentWeapon.Fire(yMoveVec);
+            WeaponUI.SendMessage("UpdateUI");
             //Fire(yMoveVec);
         }
         

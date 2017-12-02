@@ -7,6 +7,7 @@ public class NoWeapon : Weapon {
     public override void Initialize(GameObject player)
     {
         Initialize(
+            "Empty",
             null,                                        // character that is holding the Pistol
             null,                                        // Bullet prefab
             0f,                                          // Shoot rate

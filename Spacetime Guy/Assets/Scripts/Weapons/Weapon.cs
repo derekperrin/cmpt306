@@ -8,15 +8,18 @@ public abstract class Weapon {
     protected float shootRate;
     protected float bulletSpeed;
     protected float bulletDamage;
-    protected int maxAmmo;
-    protected int currentAmmo;
+    public int maxAmmo;
+    public int currentAmmo;
     private float bulletXOffset;
     private float bulletYOffset;
+    // name of weapon, useful for UI purposes... and that's pretty much it.
+    public string name;
 
     protected float nextShootTime;
 
-    protected void Initialize(GameObject character, GameObject bulletAsset, float shootRate, float bulletSpeed, float bulletDamage, int maxAmmo, int currentAmmo, float bulletXOffset, float bulletYOffset)
+    protected void Initialize(string name, GameObject character, GameObject bulletAsset, float shootRate, float bulletSpeed, float bulletDamage, int maxAmmo, int currentAmmo, float bulletXOffset, float bulletYOffset)
     {
+        this.name = name;
         this.character = character;
         this.bulletAsset = bulletAsset;
         this.shootRate = shootRate;
@@ -36,6 +39,13 @@ public abstract class Weapon {
      */
     public abstract void Initialize(GameObject player);
 
+    /***
+     * Fire a bullet in Vector2 direction.
+     * This method is designed to be called by the FireController method.
+     * When called, this method will Instantiate a bullet prefab and fire it in Vector2 direction
+     * with speed bulletSpeed (global variable) combined with the velocity of the current velocity 
+     * of the rigidbody that is in this GameObject.
+     */
     public virtual void Fire(Vector2 direction)
     {
         if (Time.time <= nextShootTime || currentAmmo <= 0) return;
