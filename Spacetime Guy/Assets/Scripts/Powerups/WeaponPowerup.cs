@@ -32,7 +32,7 @@ public abstract class WeaponPowerup<WeaponSubType> : PowerUp where WeaponSubType
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
 
-        //Invoke("startPowerDown", powerupLength);
+        Invoke("startPowerDown", powerupLength);
         InvokeRepeating("checkAmmo", 0.5f, 0.5f);
     }
 
