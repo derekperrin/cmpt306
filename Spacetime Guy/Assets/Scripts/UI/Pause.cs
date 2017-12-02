@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
-    public Text timer_text;
+   // public Text timer_text;
     public GameObject pause_menu;
 
     public bool is_paused = false;
     // Use this for initialization
     void Start()
     {
-        ResumeGame();
+        //ResumeGame();
     }
 
     // Update is called once per frame
@@ -51,7 +51,4 @@ public class Pause : MonoBehaviour
         pause_menu.SetActive(false);
         Time.timeScale = 1;
     }
-
-
-
 }
