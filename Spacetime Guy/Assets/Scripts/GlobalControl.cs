@@ -43,6 +43,11 @@ public class GlobalControl : MonoBehaviour {
         levelsCompleted = 0;
     }
 
+    void IncrementLevelCompleted()
+    {
+        levelsCompleted = levelsCompleted + 1;
+    }
+
 
     // Update is called once per frame
     //void Update () {

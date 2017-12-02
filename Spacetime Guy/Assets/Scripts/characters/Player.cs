@@ -16,6 +16,8 @@ public class Player : Character {
     // player holds a log of it's levels beaten so it can save and get from globalvar for score purposes.
     public int levelsBeaten;
 
+    //public GameObject lighting;
+
     protected override void Start()
     {
         
@@ -35,7 +37,9 @@ public class Player : Character {
         HealthUI.SendMessage("UpdateUI");
         WeaponUI = GameObject.FindGameObjectWithTag("WeaponUI");
         WeaponUI.SendMessage("UpdateUI");
-        
+
+        //var temp = Instantiate(lighting, new Vector2(characterRigidBody.position.x, characterRigidBody.position.y), new Quaternion(0,0,0,0));
+        //temp.transform.parent = transform;
     }
 
     protected override void Movement()
@@ -49,9 +53,6 @@ public class Player : Character {
     {
         Time.timeScale = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
-       //throw new System.NotImplementedException();
-       // TODO: Player cannot move
-       // TODO: Scene changes to end game screen (play again, quit etc)
     }
 
     protected override void FireController()
@@ -59,18 +60,16 @@ public class Player : Character {
         if (Input.GetButton("FireX"))
         {
             float shootDirX = Input.GetAxisRaw("FireX");
-            Vector2 xMoveVec = new Vector2((shootDirX)/* * bulletSpeed*/, 0);
+            Vector2 xMoveVec = new Vector2((shootDirX), 0);
             currentWeapon.Fire(xMoveVec);
             WeaponUI.SendMessage("UpdateUI");
-            //Fire(xMoveVec);
         }
         else if (Input.GetButton("FireY"))
         {
             float shootDirY = Input.GetAxisRaw("FireY");
-            Vector2 yMoveVec = new Vector2(0, (shootDirY)/* * bulletSpeed*/);
+            Vector2 yMoveVec = new Vector2(0, (shootDirY));
             currentWeapon.Fire(yMoveVec);
             WeaponUI.SendMessage("UpdateUI");
-            //Fire(yMoveVec);
         }
         
     }
