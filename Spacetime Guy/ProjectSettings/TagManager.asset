@@ -10,6 +10,7 @@ TagManager:
   - HealthUI
   - WeaponUI
   - Global
+  - Pause
   layers:
   - Default
   - TransparentFX
