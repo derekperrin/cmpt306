@@ -27,11 +27,12 @@ public abstract class WeaponPowerup<WeaponSubType> : PowerUp where WeaponSubType
         powerupWeapon = new WeaponSubType();
         powerupWeapon.Initialize(character);
         originalWeapon = character.GetComponent<Character>().changeWeapon(powerupWeapon);
+        GameObject.FindGameObjectWithTag("WeaponUI").SendMessage("UpdateUI");
 
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
 
-        Invoke("startPowerDown", powerupLength);
+        //Invoke("startPowerDown", powerupLength);
         InvokeRepeating("checkAmmo", 0.5f, 0.5f);
     }
 
@@ -39,6 +40,7 @@ public abstract class WeaponPowerup<WeaponSubType> : PowerUp where WeaponSubType
     {
         Debug.Log("Changing weapon back.");
         character.GetComponent<Character>().changeWeapon(originalWeapon);
+        GameObject.FindGameObjectWithTag("WeaponUI").SendMessage("UpdateUI");
         hasWeaponPowerup = false;
         Destroy(this.gameObject);
     }
