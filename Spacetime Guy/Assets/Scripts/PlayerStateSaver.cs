@@ -7,14 +7,15 @@ public class PlayerStateSaver : MonoBehaviour {
 
 
     public float playerHealth;
-    public Weapon playerWeapon;
+    //public Weapon playerWeapon;
+    public int playerWeapon;
     public int levelsCompleted;
 
 
     // Use this for initialization
     void Start () {
         playerHealth = GlobalControl.Instance.playerHealth;
-        playerWeapon = GlobalControl.Instance.playerWeapon;
+        playerWeapon = GlobalControl.Instance.playerCurrentWeaponIndex;
         levelsCompleted = GlobalControl.Instance.levelsCompleted;
 	}
 
@@ -26,7 +27,7 @@ public class PlayerStateSaver : MonoBehaviour {
     public void SavePlayer()
     {
         GlobalControl.Instance.playerHealth = playerHealth;
-        GlobalControl.Instance.playerWeapon = playerWeapon;
+        GlobalControl.Instance.playerCurrentWeaponIndex = playerWeapon;
         GlobalControl.Instance.levelsCompleted = levelsCompleted;
     }
 

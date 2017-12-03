@@ -6,9 +6,12 @@ public class GlobalControl : MonoBehaviour {
 
     public static GlobalControl Instance;
     public float playerHealth;
-    public Weapon playerWeapon;
+    public int playerCurrentWeaponIndex;
+    public Weapon[] playerWeapons;
+    public bool[] playerWeaponStates;
     public int levelsCompleted;
-	// Use this for initialization
+    public int playerNumWeapons;
+	
 	void Awake()
     {
         if (Instance == null)
@@ -30,8 +33,16 @@ public class GlobalControl : MonoBehaviour {
             if (player != null)
             {
                 playerHealth = player.healthCurrent;
-                playerWeapon = player.currentWeapon;
+                playerCurrentWeaponIndex = player.currentWeapon;
                 levelsCompleted = player.levelsBeaten;
+                playerWeapons = new Weapon[player.Weapons.Length];
+                playerWeaponStates = new bool[player.WeaponsInUse.Length];
+                playerNumWeapons = player.numWeapons;
+                for (int i = 0; i < player.Weapons.Length; i += 1)
+                {
+                    playerWeapons[i] = player.Weapons[i];
+                    playerWeaponStates[i] = player.WeaponsInUse[i];
+                }
             }
         }
     }

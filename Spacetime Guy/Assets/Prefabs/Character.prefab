@@ -93,8 +93,11 @@ MonoBehaviour:
   healthCurrent: 100
   healthMax: 100
   lives: 1
+  WeaponsInUse: 
+  maxNumWeapons: 3
+  numWeapons: 0
+  currentWeapon: 0
   levelsBeaten: 0
-  lighting: {fileID: 1252942160785144, guid: ffa076e1c6f4a6c49bce4fa821964b51, type: 2}
 --- !u!212 &212694271095483376
 SpriteRenderer:
   m_ObjectHideFlags: 1

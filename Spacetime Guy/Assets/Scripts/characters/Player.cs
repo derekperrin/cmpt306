@@ -20,19 +20,43 @@ public class Player : Character {
 
     protected override void Start()
     {
-        
         characterRigidBody = GetComponent<Rigidbody2D>();
         stunned = false;
+        /*
         if (GlobalControl.Instance.playerWeapon == null)
         {
             currentWeapon = new Pistol();
-        } else
+        }
+        else
         {
             currentWeapon = GlobalControl.Instance.playerWeapon;
+        }*/
+
+        Weapons = new Weapon[maxNumWeapons];
+        WeaponsInUse = new bool[maxNumWeapons];
+
+        if (GlobalControl.Instance.playerWeapons == null)
+        {
+            if (AddWeapon(new Pistol()) == false)
+            {
+                Debug.LogError("Could not create player's first weapon.");
+            }
+            else
+            {
+                Weapons[currentWeapon].Initialize(this.gameObject);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < Weapons.Length; i += 1)
+            {
+                Weapons[i] = GlobalControl.Instance.playerWeapons[i];
+                WeaponsInUse[i] = GlobalControl.Instance.playerWeaponStates[i];
+                numWeapons = GlobalControl.Instance.playerNumWeapons;
+            }
         }
         healthCurrent = GlobalControl.Instance.playerHealth;
         levelsBeaten = GlobalControl.Instance.levelsCompleted;
-        currentWeapon.Initialize(this.gameObject);
         HealthUI = GameObject.FindGameObjectWithTag("HealthUI");
         HealthUI.SendMessage("UpdateUI");
         WeaponUI = GameObject.FindGameObjectWithTag("WeaponUI");
@@ -57,18 +81,25 @@ public class Player : Character {
 
     protected override void FireController()
     {
-        if (Input.GetButton("FireX"))
+        if (Input.GetButtonDown("ToggleWeapon"))
+        {
+            ToggleWeapon();
+            WeaponUI.SendMessage("UpdateUI");
+        }
+        else if (Input.GetButton("FireX"))
         {
             float shootDirX = Input.GetAxisRaw("FireX");
             Vector2 xMoveVec = new Vector2((shootDirX), 0);
-            currentWeapon.Fire(xMoveVec);
+            //currentWeapon.Fire(xMoveVec);
+            Weapons[currentWeapon].Fire(xMoveVec);
             WeaponUI.SendMessage("UpdateUI");
         }
         else if (Input.GetButton("FireY"))
         {
             float shootDirY = Input.GetAxisRaw("FireY");
             Vector2 yMoveVec = new Vector2(0, (shootDirY));
-            currentWeapon.Fire(yMoveVec);
+            //currentWeapon.Fire(yMoveVec);
+            Weapons[currentWeapon].Fire(yMoveVec);
             WeaponUI.SendMessage("UpdateUI");
         }
         

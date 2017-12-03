@@ -20,6 +20,6 @@ public class WeaponUI : MonoBehaviour {
     void UpdateUI()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        weaponText.text = target.currentWeapon.name + ": " + target.currentWeapon.currentAmmo + " / " + target.currentWeapon.maxAmmo;
+        weaponText.text = target.Weapons[target.currentWeapon].name + ": " + target.Weapons[target.currentWeapon].currentAmmo + " / " + target.Weapons[target.currentWeapon].maxAmmo;
     }
 }
