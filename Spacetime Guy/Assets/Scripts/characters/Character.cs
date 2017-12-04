@@ -21,8 +21,14 @@ public abstract class Character : MonoBehaviour
     protected int lives;
     protected bool stunned;
 
-    public Weapon currentWeapon;
-    
+    //public Weapon currentWeapon;
+
+    public Weapon[] Weapons;
+    public bool[] WeaponsInUse;
+    [SerializeField]
+    public int maxNumWeapons;
+    public int numWeapons = 0;
+    public int currentWeapon;
 
     /***
      * The user is required to initialize the characterRigidBody global variable
@@ -105,12 +111,76 @@ public abstract class Character : MonoBehaviour
     /***
      * Change the currentWeapon to newWeapon.
      * Return the original value of currentWeapon.
-     */
+     *//*
     public Weapon changeWeapon(Weapon newWeapon)
     {
         Weapon originalWeapon = currentWeapon;
         currentWeapon = newWeapon;
         return originalWeapon;
+    }*/
+
+    public void ToggleWeapon()
+    {
+        int i = 0;
+        do
+        {
+            currentWeapon = currentWeapon + 1 >= maxNumWeapons ? 0 : currentWeapon + 1;
+            if (++i > maxNumWeapons)
+            {
+                Debug.LogError("Could not toggle to next weapon.");
+                break;
+            }
+        }
+        while (!WeaponsInUse[currentWeapon]);
     }
 
+    /*** 
+     * returns true if the weapon was added,
+     * false otherwise
+     */
+    public bool AddWeapon(Weapon weapon)
+    {
+        if (numWeapons >= maxNumWeapons) return false;
+        numWeapons += 1;
+        for (currentWeapon = 0; WeaponsInUse[currentWeapon]; currentWeapon += 1);
+        WeaponsInUse[currentWeapon] = true;
+        Weapons[currentWeapon] = weapon;
+        return true;
+    }
+
+    public void RemoveWeapon(int weaponId)
+    {
+        if (weaponId >= maxNumWeapons || weaponId < 0)
+        {
+            Debug.LogError("Invalid Weapon ID to remove.");
+            return;
+        }
+        WeaponsInUse[weaponId] = false;
+        numWeapons -= 1;
+        Debug.Log("Weapon ID: " + weaponId + ". currentWeapon: " + currentWeapon + ".");
+        if (currentWeapon == weaponId)
+        {
+            ToggleWeapon();
+        }
+    }
+
+    /***
+     * Return the weapon ID if found.
+     * If not found, return -1
+     */
+    public int getWeaponId(Weapon weapon)
+    {
+        int id;
+        bool found = false;
+        for (id = 0; id < maxNumWeapons; id += 1)
+        {
+            if (Weapons[id].Equals(weapon))
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found) return -1; //If the weapon was not found.
+        return id;
+    }
 }

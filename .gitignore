@@ -35,3 +35,6 @@ sysinfo.txt
 Thumbs.db
 Spacetime Guy/.vs/
 *.json
+
+# Unity Plugins
+Spacetime Guy/Assets/Plugins/

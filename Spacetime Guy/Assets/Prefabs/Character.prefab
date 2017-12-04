@@ -93,6 +93,10 @@ MonoBehaviour:
   healthCurrent: 100
   healthMax: 100
   lives: 1
+  WeaponsInUse: 
+  maxNumWeapons: 3
+  numWeapons: 0
+  currentWeapon: 0
   levelsBeaten: 0
 --- !u!212 &212694271095483376
 SpriteRenderer:

@@ -48,7 +48,8 @@ public abstract class Weapon {
      */
     public virtual void Fire(Vector2 direction)
     {
-        if (Time.time <= nextShootTime || currentAmmo <= 0) return;
+        if (Time.time <= nextShootTime || currentAmmo <= 0)
+            return;
         nextShootTime = Time.time + shootRate;
 
         // Make sure the weapon has been initialized before shooting it.
@@ -71,6 +72,19 @@ public abstract class Weapon {
         direction = new Vector2(direction.x == 0 ? playerVelocity.x * velocityMultiplier : direction.x * bulletSpeed, direction.y == 0 ? playerVelocity.y * velocityMultiplier : direction.y * bulletSpeed);
 
         bullet.GetComponent<Rigidbody2D>().AddForce(direction);
-        
+
+        if (currentAmmo <= 0)
+        {
+            Character charClass = character.GetComponent<Character>();
+            if (charClass.numWeapons == 1) return; // don't let the player have less than one weapon.
+            int weaponId = charClass.getWeaponId(this);
+            if (weaponId == -1)
+            {
+                Debug.LogError("Could not find next weapon id.");
+                return;
+            }
+            charClass.RemoveWeapon(weaponId);
+        }
+
     }
 }

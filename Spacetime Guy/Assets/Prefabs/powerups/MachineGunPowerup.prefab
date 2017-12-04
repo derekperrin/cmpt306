@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212086338335105264}
   - component: {fileID: 114663818647399952}
   - component: {fileID: 58411002654405196}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: MachineGunPowerup
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
