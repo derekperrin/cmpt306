@@ -22,15 +22,6 @@ public class Player : Character {
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
         stunned = false;
-        /*
-        if (GlobalControl.Instance.playerWeapon == null)
-        {
-            currentWeapon = new Pistol();
-        }
-        else
-        {
-            currentWeapon = GlobalControl.Instance.playerWeapon;
-        }*/
 
         Weapons = new Weapon[maxNumWeapons];
         WeaponsInUse = new bool[maxNumWeapons];
@@ -51,6 +42,7 @@ public class Player : Character {
             for (int i = 0; i < Weapons.Length; i += 1)
             {
                 Weapons[i] = GlobalControl.Instance.playerWeapons[i];
+                Weapons[i].Initialize(this.gameObject);
                 WeaponsInUse[i] = GlobalControl.Instance.playerWeaponStates[i];
                 numWeapons = GlobalControl.Instance.playerNumWeapons;
             }
