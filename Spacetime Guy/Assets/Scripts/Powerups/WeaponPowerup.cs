@@ -17,6 +17,7 @@ public abstract class WeaponPowerup<WeaponSubType> : PowerUp where WeaponSubType
             return;
 
         Destroy(this.gameObject);
+        GameObject.FindGameObjectWithTag("WeaponUI").SendMessage("UpdateUI");
     }
 
     protected override void startPowerDown()
