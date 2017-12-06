@@ -6,14 +6,13 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour {
 
-    public Text healthText;
-    // private Player player;
+    private Player player;
 
     private int maxHearts = 10;
     public int currHearts = 3;
     public int currHealth;
     private int maxHealth;
-    private int healthPerHeart = 2;
+    private int healthPerHeart;
 
     public Image[] healthImages;
     public Sprite[] healthSprites;
@@ -21,9 +20,13 @@ public class HealthUI : MonoBehaviour {
 
     void Start()
     {
-        currHealth = currHearts * healthPerHeart;
-        maxHealth = maxHearts * healthPerHeart;
-        CheckHealthAmount();
+//        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+//        currHealth = (int) player.getCurrentHealth();
+//        maxHealth = (int) player.getMaxHealth();
+//        healthPerHeart = maxHealth / maxHearts;
+//        currHealth = currHearts * healthPerHeart;
+//        maxHealth = maxHearts * healthPerHeart;
+//        CheckHealthAmount();
     }
 
     void CheckHealthAmount()
@@ -74,10 +77,12 @@ public class HealthUI : MonoBehaviour {
         }
     }
 
+    // Probably don't need this
     public void TakeDamage(int amount)
     {
         currHealth += amount;
         currHealth = Mathf.Clamp(currHealth, 0, currHearts * healthPerHeart);
+        UpdateHearts();
     }
 
     public void AddHeartContainer()
@@ -86,15 +91,23 @@ public class HealthUI : MonoBehaviour {
         currHearts = Mathf.Clamp(currHearts, 0, maxHearts);
 
         currHealth = currHearts * healthPerHeart;
-        maxHealth = maxHearts * healthPerHeart;
+        // maxHealth = maxHearts * healthPerHeart;
 
         CheckHealthAmount();
 
     }
-//    void UpdateUI()
-//    {
-//        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-//       healthText.text = "Health: " + target.healthCurrent + " / " + target.healthMax;
-//    }
+    void UpdateUI()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        currHealth = (int) player.getCurrentHealth();
+        maxHealth = (int) player.getMaxHealth();
+        healthPerHeart = maxHealth / maxHearts;
+//        currHealth = currHearts * healthPerHeart;
+//        maxHealth = maxHearts * healthPerHeart;
+        CheckHealthAmount();
+        // currHealth = (int) player.getCurrentHealth();
+        // UpdateHearts();
+        // healthText.text = "Health: " + target.healthCurrent + " / " + target.healthMax;
+    }
 }
 
