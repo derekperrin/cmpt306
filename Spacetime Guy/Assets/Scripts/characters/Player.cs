@@ -57,8 +57,6 @@ public class Player : Character {
         }
         healthCurrent = GlobalControl.Instance.playerHealth;
         levelsBeaten = GlobalControl.Instance.levelsCompleted;
-        HealthUI = GameObject.FindGameObjectWithTag("HealthUI");
-        HealthUI.SendMessage("UpdateUI");
         WeaponUI = GameObject.FindGameObjectWithTag("WeaponUI");
         WeaponUI.SendMessage("UpdateUI");
 

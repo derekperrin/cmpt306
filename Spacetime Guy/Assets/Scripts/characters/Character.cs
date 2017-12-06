@@ -183,4 +183,14 @@ public abstract class Character : MonoBehaviour
         if (!found) return -1; //If the weapon was not found.
         return id;
     }
+
+    public float getCurrentHealth()
+    {
+        return healthCurrent;
+    }
+
+    public float getMaxHealth()
+    {
+        return healthMax;
+    }
 }
