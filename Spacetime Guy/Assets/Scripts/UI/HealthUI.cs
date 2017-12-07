@@ -8,29 +8,21 @@ public class HealthUI : MonoBehaviour {
 
     private Player player;
 
-    private int maxHearts = 10;
-    public int currHearts = 3;
+    public int maxHearts = 20;
+    public int currHearts;      // this is the number of heart containers that are visible
     public int currHealth;
-    private int maxHealth;
-    private int healthPerHeart;
+    public int visibleMaxHealth;
+    public int healthPerHeart;
+
+    private int actualMaxHealth;
+    private bool started = false;   // this is a janky work around because of when PCG instantiates shit.
 
     public Image[] healthImages;
     public Sprite[] healthSprites;
 
-
-    void Start()
-    {
-//        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-//        currHealth = (int) player.getCurrentHealth();
-//        maxHealth = (int) player.getMaxHealth();
-//        healthPerHeart = maxHealth / maxHearts;
-//        currHealth = currHearts * healthPerHeart;
-//        maxHealth = maxHearts * healthPerHeart;
-//        CheckHealthAmount();
-    }
-
     void CheckHealthAmount()
     {
+        Debug.Log("Damage Check Health");
         for (int i = 0; i < maxHearts; i++)
         {
             if (currHearts <= i)
@@ -91,6 +83,12 @@ public class HealthUI : MonoBehaviour {
         currHearts = Mathf.Clamp(currHearts, 0, maxHearts);
 
         currHealth = currHearts * healthPerHeart;
+        visibleMaxHealth = currHearts * healthPerHeart;
+
+        // update the player's health members
+        player.healthMax = visibleMaxHealth;
+        player.healthCurrent = currHealth;
+
         // maxHealth = maxHearts * healthPerHeart;
 
         CheckHealthAmount();
@@ -98,16 +96,21 @@ public class HealthUI : MonoBehaviour {
     }
     void UpdateUI()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        currHealth = (int) player.getCurrentHealth();
-        maxHealth = (int) player.getMaxHealth();
-        healthPerHeart = maxHealth / maxHearts;
-//        currHealth = currHearts * healthPerHeart;
-//        maxHealth = maxHearts * healthPerHeart;
+        if (!started)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            currHealth = (int)player.getCurrentHealth();
+            visibleMaxHealth = (int)player.getMaxHealth();
+            healthPerHeart = visibleMaxHealth / currHearts;
+            actualMaxHealth = maxHearts * healthPerHeart;
+            started = true;
+        }
+        else
+        {
+            currHealth = (int)player.getCurrentHealth();
+            visibleMaxHealth = (int)player.getMaxHealth();
+        }
         CheckHealthAmount();
-        // currHealth = (int) player.getCurrentHealth();
-        // UpdateHearts();
-        // healthText.text = "Health: " + target.healthCurrent + " / " + target.healthMax;
     }
 }
 

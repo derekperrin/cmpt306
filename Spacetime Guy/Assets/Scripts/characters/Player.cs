@@ -22,6 +22,8 @@ public class Player : Character {
     {
         characterRigidBody = GetComponent<Rigidbody2D>();
         stunned = false;
+        healthCurrent *= 4;
+        healthMax *= 4;
         /*
         if (GlobalControl.Instance.playerWeapon == null)
         {
@@ -77,6 +79,12 @@ public class Player : Character {
     {
         Time.timeScale = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    }
+
+    protected override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        HealthUI.SendMessage("UpdateUI");
     }
 
     protected override void FireController()

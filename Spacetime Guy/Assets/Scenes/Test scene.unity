@@ -299,8 +299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74699eec720cabb4abc9d04d049b41b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currHearts: 3
+  maxHearts: 10
+  currHearts: 5
   currHealth: 0
+  visibleMaxHealth: 0
+  healthPerHeart: 0
   healthImages:
   - {fileID: 479762269}
   - {fileID: 1781946682}
@@ -839,7 +842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3402cfba27c2e494cb77c6018362a524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 100
+  playerHealth: 40
   playerCurrentWeaponIndex: 0
   playerWeaponStates: 
   levelsCompleted: 0

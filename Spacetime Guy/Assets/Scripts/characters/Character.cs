@@ -46,7 +46,7 @@ public abstract class Character : MonoBehaviour
      * When something collides with the character, the thing that collides with the character should send a message
      * to call this method
      */
-    protected void TakeDamage(float damage)
+    virtual protected void TakeDamage(float damage)
     {
         if (healthMax == 0) // if immortal
             return;

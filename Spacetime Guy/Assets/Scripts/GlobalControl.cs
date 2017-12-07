@@ -50,7 +50,6 @@ public class GlobalControl : MonoBehaviour {
     void ResetPlayerState()
     {
         playerHealth = 100;
-        //playerWeapon = new Pistol();
         levelsCompleted = 0;
     }
 
@@ -58,10 +57,4 @@ public class GlobalControl : MonoBehaviour {
     {
         levelsCompleted = levelsCompleted + 1;
     }
-
-
-    // Update is called once per frame
-    //void Update () {
-	//	
-	//}
 }

@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 5
-  healthCurrent: 100
-  healthMax: 100
+  healthCurrent: 10
+  healthMax: 10
   lives: 1
   WeaponsInUse: 
   maxNumWeapons: 3
