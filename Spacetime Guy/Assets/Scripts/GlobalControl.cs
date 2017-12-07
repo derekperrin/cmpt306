@@ -49,7 +49,9 @@ public class GlobalControl : MonoBehaviour {
 
     void ResetPlayerState()
     {
-        playerHealth = 100;
+        // can't do this because player isn't instantiated yet. There must be a better way...
+        // playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().getMaxHealth();
+        playerHealth = 40;
         levelsCompleted = 0;
     }
 

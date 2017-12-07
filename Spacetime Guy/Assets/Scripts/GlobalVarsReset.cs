@@ -5,6 +5,6 @@ using UnityEngine;
 public class GlobalVarsReset : MonoBehaviour {
     public void ResetGlobalVars()
     {
-        GlobalControl.Instance.SendMessage("resetPlayerState");
+        GlobalControl.Instance.SendMessage("ResetPlayerState");
     }
 }
