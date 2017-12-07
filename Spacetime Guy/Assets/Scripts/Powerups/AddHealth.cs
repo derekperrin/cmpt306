@@ -8,6 +8,7 @@ public class AddHealth : PowerUp {
     protected override void startPowerUp(Collider2D collider)
     {
         collider.gameObject.SendMessage("TakeDamage", -healthBoost);
+        GameObject.FindGameObjectWithTag("HealthUI").SendMessage("UpdateUI");
         Destroy(this.gameObject);
     }
 

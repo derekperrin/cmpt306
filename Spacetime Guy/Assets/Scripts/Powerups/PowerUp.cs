@@ -10,7 +10,10 @@ public abstract class PowerUp : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        startPowerUp(collider);
+        if (collider.tag == "Player")
+        {
+            startPowerUp(collider);
+        }
     }
 
     protected abstract void startPowerDown();

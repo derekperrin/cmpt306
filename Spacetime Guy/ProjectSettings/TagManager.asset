@@ -10,6 +10,10 @@ TagManager:
   - HealthUI
   - WeaponUI
   - Global
+  - PowerUp
+  - Portal
+  - Background
+  - globalObject
   layers:
   - Default
   - TransparentFX
@@ -21,9 +25,9 @@ TagManager:
   - 
   - Enemy
   - Wall
-  - 
-  - 
-  - 
+  - PowerUp
+  - Portal
+  - Background
   - 
   - 
   - 

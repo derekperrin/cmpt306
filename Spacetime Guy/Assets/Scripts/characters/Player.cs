@@ -53,6 +53,7 @@ public class Player : Character {
             for (int i = 0; i < Weapons.Length; i += 1)
             {
                 Weapons[i] = GlobalControl.Instance.playerWeapons[i];
+                Weapons[i].Initialize(this.gameObject);
                 WeaponsInUse[i] = GlobalControl.Instance.playerWeaponStates[i];
                 numWeapons = GlobalControl.Instance.playerNumWeapons;
             }
@@ -110,6 +111,6 @@ public class Player : Character {
             Weapons[currentWeapon].Fire(yMoveVec);
             WeaponUI.SendMessage("UpdateUI");
         }
-        
+
     }
 }

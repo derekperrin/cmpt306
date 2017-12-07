@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class boardCreator : MonoBehaviour
 {
+    //Room difficulty
+    public int roomDifficulty = 3;
 
     //minimum size of leafs/also effects rooms
     public int minLeaf = 20;
@@ -120,7 +122,7 @@ public class boardCreator : MonoBehaviour
                 finalLeafList.Add(i);
             }
         }
-        placePortal(finalLeafList);
+        
         //instantiate hallway list
         hallwayList = new List<Hallways>();
 
@@ -137,7 +139,8 @@ public class boardCreator : MonoBehaviour
             hallwayList.Add(h1);
 
         }
-        
+        placePortal(finalLeafList);
+
         board = new int[levelHeight, levelWidth];
         for (int i = 0; i < levelWidth; i++)
         {
@@ -243,6 +246,7 @@ public class boardCreator : MonoBehaviour
 
         }
         System.Random randnum = new System.Random();
+        determineDifficulty();
         foreach (Leafs i in finalLeafList)
         {
             int numEnemies1 = 0; //number of enemies in the room
@@ -261,7 +265,7 @@ public class boardCreator : MonoBehaviour
             }
             if(i.room.containsPortal == true)
             {
-                print("hello");
+                
                 int x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
                 int y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
                 board[x, y] = 10;
@@ -525,10 +529,37 @@ public class boardCreator : MonoBehaviour
 
     void placePortal(List<Leafs> list)
     {
-        System.Random randnum = new System.Random();
-        int roomIndex = randnum.Next(0, list.Count-1);
-        list.ToArray()[roomIndex].room.containsPortal = true;
+        Room startroom = null;
+        Room portalroom = null;
+        int distance = 0;
+        foreach(Leafs i in list)
+        {
+            if (i.room.startRoom)
+            {
+                startroom = i.room;
+            }
+        }
+        foreach(Leafs i in list)
+        {
+            if(Mathf.Abs(startroom.xPos - i.room.xPos) + Mathf.Abs(startroom.yPos - i.room.yPos) > distance)
+            {
+                distance = Mathf.Abs(startroom.xPos - i.room.xPos) + Mathf.Abs(startroom.yPos - i.room.yPos);
+                portalroom = i.room;
+
+            }
+        }
+        portalroom.containsPortal = true;
         portalPlaced = true;
+        
+       
+    }
+
+    void determineDifficulty()
+    {
+        GameObject globalobject = GameObject.FindGameObjectWithTag("globalObject");
+        int temp = globalobject.GetComponent<GlobalControl>().levelsCompleted;
+        minEnemies = temp + roomDifficulty;
+        maxEnemies = temp + temp + roomDifficulty + roomDifficulty;
     }
 }
 
