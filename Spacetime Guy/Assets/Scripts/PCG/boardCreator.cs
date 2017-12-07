@@ -149,7 +149,6 @@ public class boardCreator : MonoBehaviour
                 board[i, j] = 1;
             }
         }
-        int countE = 0;
         foreach (Leafs i in finalLeafList)
         {
 
@@ -265,9 +264,13 @@ public class boardCreator : MonoBehaviour
             }
             if(i.room.containsPortal == true)
             {
-                
-                int x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
-                int y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
+                int x = randnum.Next(i.room.xPos + 2, i.room.xPos + i.room.roomWidth - 2);
+                int y = randnum.Next(i.room.yPos + 2, i.room.yPos + i.room.roomHeight - 2);
+                board[x, y] = 50;
+                // x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
+                // y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
+                x++;
+                y++;
                 board[x, y] = 10;
             }
             //find location of enemy type 1
@@ -325,6 +328,7 @@ public class boardCreator : MonoBehaviour
         GameObject basicEnemy = null;
         GameObject fastEnemy = null;
         GameObject background = null;
+        GameObject freeman = basicAdvancedEnemy;
         if (levelType == 'F')
         {
             background = fireBackground;
@@ -436,6 +440,13 @@ public class boardCreator : MonoBehaviour
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
                     Instantiate(powerups[Random.Range(0, powerups.Length)], position, rotation);
 
+                }
+                if (board[j, k] == 50)
+                {
+                    Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    Instantiate(freeman, position, rotation);
+                    //print("enemy2");
                 }
             }
         }
