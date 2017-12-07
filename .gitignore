@@ -33,3 +33,8 @@ sysinfo.txt
 
 # Windows Generated Files
 Thumbs.db
+Spacetime Guy/.vs/
+*.json
+
+# Unity Plugins
+Spacetime Guy/Assets/Plugins/

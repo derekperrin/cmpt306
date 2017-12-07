@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Wall
+  - SoundPlayer
+  - HealthUI
+  - WeaponUI
+  - Global
+  - PowerUp
+  - Portal
+  - Background
+  - globalObject
   layers:
   - Default
   - TransparentFX
@@ -13,11 +23,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Wall
+  - PowerUp
+  - Portal
+  - Background
   - 
   - 
   - 

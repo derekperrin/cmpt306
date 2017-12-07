@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Spacetime Guy/Assets/Scripts/hero.cs.meta
+guid: b4f5127ff919c1a45aae880c1ac62df3
+timeCreated: 1506798361
+=======
+guid: 51008f584f36d304ea593a1f699f302e
+timeCreated: 1509648463
+>>>>>>> characters:Spacetime Guy/Assets/Scripts/AutoDestruct.cs.meta
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
