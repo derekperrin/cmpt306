@@ -175,6 +175,7 @@ public class boardCreator : MonoBehaviour
                 {
                     board[j, i.startRoomYCorner] = 0;
                     board[j, i.startRoomYCorner + 1] = 0;
+                    board[j, i.startRoomYCorner - 1] = 0;
                 }
             }
             if ((i.hallwayHorizontalLength > 0) && (i.yBendCorner == i.endRoomYCorner))
@@ -184,6 +185,7 @@ public class boardCreator : MonoBehaviour
                 {
                     board[j, i.yBendCorner] = 0;
                     board[j, i.yBendCorner + 1] = 0;
+                    board[j, i.yBendCorner - 1] = 0;
                 }
             }
             if ((i.hallwayHorizontalLength < 0) & (i.startRoomYCorner == i.yBendCorner))
@@ -193,6 +195,7 @@ public class boardCreator : MonoBehaviour
                 {
                     board[j, i.startRoomYCorner] = 0;
                     board[j, i.startRoomYCorner - 1] = 0;
+                    board[j, i.startRoomYCorner + 1] = 0;
                 }
             }
             if ((i.hallwayHorizontalLength < 0) && (i.yBendCorner == i.endRoomYCorner))
@@ -202,6 +205,7 @@ public class boardCreator : MonoBehaviour
                 {
                     board[j, i.yBendCorner] = 0;
                     board[j, i.yBendCorner - 1] = 0;
+                    board[j, i.yBendCorner + 1] = 0;
                 }
             }
             if ((i.hallwayVerticalLength > 0) && (i.startRoomXCorner == i.xBendCorner))
@@ -211,6 +215,7 @@ public class boardCreator : MonoBehaviour
                 {
                     board[i.startRoomXCorner, j] = 0;
                     board[i.startRoomXCorner - 1, j] = 0;
+                    board[i.startRoomXCorner + 1, j] = 0;
                 }
             }
             if ((i.hallwayVerticalLength > 0) && (i.xBendCorner == i.endRoomXCorner))
@@ -220,6 +225,7 @@ public class boardCreator : MonoBehaviour
                 {
                     board[i.xBendCorner, j] = 0;
                     board[i.xBendCorner + 1, j] = 0;
+                    board[i.xBendCorner - 1, j] = 0;
                 }
             }
             if ((i.hallwayVerticalLength < 0) & (i.startRoomXCorner == i.xBendCorner))
@@ -229,6 +235,7 @@ public class boardCreator : MonoBehaviour
                 {
                     board[i.startRoomXCorner, j] = 0;
                     board[i.startRoomXCorner - 1, j] = 0;
+                    board[i.startRoomXCorner + 1, j] = 0;
                 }
             }
             if ((i.hallwayVerticalLength < 0) && (i.xBendCorner == i.endRoomXCorner))
@@ -238,6 +245,8 @@ public class boardCreator : MonoBehaviour
                 {
                     board[i.xBendCorner, j] = 0;
                     board[i.xBendCorner - 1, j] = 0;
+                   
+                    board[i.xBendCorner + 1, j] = 0;
 
 
                 }
@@ -266,12 +275,13 @@ public class boardCreator : MonoBehaviour
             {
                 int x = randnum.Next(i.room.xPos + 2, i.room.xPos + i.room.roomWidth - 2);
                 int y = randnum.Next(i.room.yPos + 2, i.room.yPos + i.room.roomHeight - 2);
-                board[x, y] = 50;
+                board[x, y] = 10;
                 // x = randnum.Next(i.room.xPos + 1, i.room.xPos + i.room.roomWidth - 1);
                 // y = randnum.Next(i.room.yPos + 1, i.room.yPos + i.room.roomHeight - 1);
                 x++;
                 y++;
-                board[x, y] = 10;
+                board[x, y] = 50;
+                print(x + " " + y);
             }
             //find location of enemy type 1
             while (numEnemies1 != 0)
@@ -443,6 +453,7 @@ public class boardCreator : MonoBehaviour
                 }
                 if (board[j, k] == 50)
                 {
+                    print("here");
                     Vector2 position = new Vector2(j + xBoardCorner, k + yBoardCorner);
                     Quaternion rotation = Quaternion.Euler(0, 0, 0);
                     Instantiate(freeman, position, rotation);
