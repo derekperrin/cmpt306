@@ -82,12 +82,13 @@ public class HealthUI : MonoBehaviour {
         currHearts += 1;
         currHearts = Mathf.Clamp(currHearts, 0, maxHearts);
 
-        currHealth = currHearts * healthPerHeart;
+        currHealth += healthPerHeart;
         visibleMaxHealth = currHearts * healthPerHeart;
 
         // update the player's health members
         player.healthMax = visibleMaxHealth;
         player.healthCurrent = currHealth;
+
 
         // maxHealth = maxHearts * healthPerHeart;
 
